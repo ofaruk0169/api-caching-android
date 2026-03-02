@@ -1,4 +1,4 @@
-package com.example.apicachingapplication.ui.theme
+package com.example.apicachingapplication.core.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
