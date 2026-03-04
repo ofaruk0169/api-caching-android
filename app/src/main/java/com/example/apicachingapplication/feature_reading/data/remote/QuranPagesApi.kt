@@ -1,4 +1,4 @@
-package com.example.apicachingapplication.feature_reading.data.remote.dto
+package com.example.apicachingapplication.feature_reading.data.remote
 
 import retrofit2.http.GET
 
