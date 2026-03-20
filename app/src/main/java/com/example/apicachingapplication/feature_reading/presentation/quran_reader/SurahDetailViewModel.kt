@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SurahDetailViewModel @Inject constructor(
     private val getSurahUseCase: GetSurahUseCase,
-    private val savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
 
