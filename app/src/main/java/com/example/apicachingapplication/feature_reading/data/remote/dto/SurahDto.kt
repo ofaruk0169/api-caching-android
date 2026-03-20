@@ -11,9 +11,12 @@ data class SurahDto(
     val totalAyah: Int
 )
 
-fun SurahDto.toSurah(): Surah {
+
+
+fun SurahDto.toSurah(surahNumber: Int): Surah {
     return Surah(
         surahName = surahName,
-        totalAyah = totalAyah
+        totalAyah = totalAyah,
+        surahNumber = surahNumber
     )
 }

@@ -16,7 +16,9 @@ class GetSurahsUseCase @Inject constructor(
     operator fun invoke(): Flow<Resource<List<Surah>>> = flow {
         try {
             emit(Resource.Loading())
-            val surahs = repository.getSurahs().map { it.toSurah() }
+            val surahs = repository.getSurahs().mapIndexed { index, item ->
+                item.toSurah(index + 1)
+            }
             emit(Resource.Success(surahs))
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "An unexpected  error occured"))
