@@ -4,6 +4,6 @@ import com.example.apicachingapplication.feature_reading.domain.model.Surah
 
 data class SurahListState(
     val isLoading: Boolean = false,
-    val coins: List<Surah> = emptyList(),
+    val surahs: List<Surah> = emptyList(),
     val error: String = ""
 )
