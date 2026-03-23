@@ -16,8 +16,6 @@ import kotlinx.coroutines.flow.onEach
 class SurahListViewModel @Inject constructor(
     private val getSurahsUseCase: GetSurahsUseCase
 ) : ViewModel() {
-
-
     private val _state = mutableStateOf<SurahListState>(SurahListState())
     val state: State<SurahListState> = _state
 
