@@ -13,6 +13,6 @@ interface QuranPagesApi {
     @GET("/api/surah.json")
     suspend fun getSurahs(): List<SurahDto>
 
-    @GET("/api/{surahId}")
+    @GET("/api/{surahId}.json")
     suspend fun getSurahById(@Path("surahId") surahId: String) : SurahDetailDto
 }

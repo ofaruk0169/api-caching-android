@@ -18,7 +18,9 @@ import com.example.apicachingapplication.core.ui.theme.APICachingApplicationThem
 import com.example.apicachingapplication.feature_reading.presentation.Screen
 import com.example.apicachingapplication.feature_reading.presentation.quran_reader.SurahDetailScreen
 import com.example.apicachingapplication.feature_reading.presentation.quran_surah_list.SurahListScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

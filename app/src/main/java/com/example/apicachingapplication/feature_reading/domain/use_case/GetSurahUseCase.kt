@@ -17,13 +17,13 @@ class GetSurahUseCase @Inject constructor(
 ) {
     operator fun invoke(surahId: String): Flow<Resource<SurahDetail>> = flow {
         try {
-            emit(Resource.Loading())
+            emit(Resource.Loading<SurahDetail>())
             val surah = repository.getSurahById(surahId).toSurahDetail()
-            emit(Resource.Success(surah))
+            emit(Resource.Success<SurahDetail>(surah))
         } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: "An unexpected  error occured"))
+            emit(Resource.Error<SurahDetail>(e.localizedMessage ?: "An unexpected  error occured"))
         } catch (e: IOException) {
-            emit(Resource.Error("Couldn't reach server. Please check connection."))
+            emit(Resource.Error<SurahDetail>("Couldn't reach server. Please check connection."))
         }
     }
 

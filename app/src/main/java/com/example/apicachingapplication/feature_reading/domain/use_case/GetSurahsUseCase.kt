@@ -15,15 +15,15 @@ class GetSurahsUseCase @Inject constructor(
 ) {
     operator fun invoke(): Flow<Resource<List<Surah>>> = flow {
         try {
-            emit(Resource.Loading())
+            emit(Resource.Loading<List<Surah>>())
             val surahs = repository.getSurahs().mapIndexed { index, item ->
                 item.toSurah(index + 1)
             }
-            emit(Resource.Success(surahs))
+            emit(Resource.Success<List<Surah>>(surahs))
         } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage ?: "An unexpected  error occured"))
+            emit(Resource.Error<List<Surah>>(e.localizedMessage ?: "An unexpected  error occured"))
         } catch (e: IOException) {
-            emit(Resource.Error("Couldn't reach server. Please check connection."))
+            emit(Resource.Error<List<Surah>>("Couldn't reach server. Please check connection."))
         }
     }
 
