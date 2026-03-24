@@ -11,7 +11,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.apicachingapplication.core.ui.theme.APICachingApplicationTheme
+import com.example.apicachingapplication.feature_reading.presentation.Screen
+import com.example.apicachingapplication.feature_reading.presentation.quran_reader.SurahDetailScreen
+import com.example.apicachingapplication.feature_reading.presentation.quran_surah_list.SurahListScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,11 +25,22 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             APICachingApplicationTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                val navController = rememberNavController()
+                NavHost(
+                    navController = navController,
+                    startDestination = Screen.SurahListScreen.route
+                ) {
+                    composable(
+                        route = Screen.SurahListScreen.route
+                    ) {
+                        SurahListScreen(navController)
+                    }
+
+                    composable(
+                        route = Screen.SurahDetailScreen.route + "/{surahId}"
+                    ) {
+                        SurahDetailScreen()
+                    }
                 }
             }
         }
