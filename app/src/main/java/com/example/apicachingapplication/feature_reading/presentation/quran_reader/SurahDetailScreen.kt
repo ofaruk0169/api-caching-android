@@ -40,11 +40,12 @@ fun SurahDetailScreen(
                 item {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        horizontalArrangement = Arrangement.Center
                     ) {
                         Text(
                             text = "${surah.surahNo}. ${surah.surahName}",
-                            style = MaterialTheme.typography.bodyMedium,
+                            style = MaterialTheme.typography.titleLarge,
+                            textAlign = TextAlign.Center,
                             modifier = Modifier.weight(8f)
                         )
                     }
@@ -52,13 +53,26 @@ fun SurahDetailScreen(
 
                 }
 
-                items(surah.english) { ayahString ->
+                items(surah.english.size) { index ->
                     Text(
-                        text = ayahString,
+                        text = surah.arabic1[index],
                         style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.fillMaxWidth()
+                        textAlign = TextAlign.Center,
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                    )
+                    Text(
+                        text = surah.english[index],
+                        style = MaterialTheme.typography.bodyMedium,
+                        textAlign = TextAlign.Center,
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
                     )
                 }
+
+
             }
         }
 

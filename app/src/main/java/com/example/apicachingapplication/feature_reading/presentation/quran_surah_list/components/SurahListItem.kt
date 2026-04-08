@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.apicachingapplication.feature_reading.domain.model.Surah
@@ -18,16 +19,16 @@ fun SurahListItem(
     surah: Surah,
     onItemClick: (Surah) -> Unit
 ) {
-
     Row(
       modifier = Modifier
           .fillMaxWidth()
           .clickable { onItemClick(surah) }
           .padding(20.dp),
-        horizontalArrangement = Arrangement.SpaceBetween
+        horizontalArrangement = Arrangement.Center
     ) {
         Text(
             text = "${surah.surahNumber}. ${surah.surahName}",
+            color = Color(199, 104, 2),
             style = MaterialTheme.typography.bodyMedium,
             overflow = TextOverflow.Ellipsis
         )
