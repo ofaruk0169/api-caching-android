@@ -27,7 +27,6 @@ object AppModule {
             .create(QuranPagesApi::class.java)
     }
 
-
     @Provides
     @Singleton
     fun provideSurahRepository(api: QuranPagesApi): SurahRepository {
