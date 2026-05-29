@@ -21,7 +21,6 @@ class SurahDetailViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-
     private val _state = mutableStateOf(SurahDetailState())
     val state: State<SurahDetailState> = _state
 
