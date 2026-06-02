@@ -41,11 +41,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             APICachingApplicationTheme {
                 val navController = rememberNavController()
-
                 Scaffold(
                     modifier = Modifier
                         .fillMaxSize(),
-
                     topBar = {
                         CenterAlignedTopAppBar(
                             modifier = Modifier.height(135.dp),
@@ -76,10 +74,8 @@ class MainActivity : ComponentActivity() {
                             colors = TopAppBarDefaults.mediumTopAppBarColors(
                                 containerColor = Color(0xFF194f09)
                             )
-
                         )
                     }
-
                 ) { paddingValues ->
                     NavHost(
                         modifier = Modifier.padding(paddingValues),
@@ -98,9 +94,7 @@ class MainActivity : ComponentActivity() {
                             SurahDetailScreen()
                         }
                     }
-
                 }
-
             }
         }
     }
