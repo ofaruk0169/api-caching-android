@@ -35,7 +35,6 @@ fun SurahDetailScreen(
             LazyColumn (
                 modifier = Modifier.fillMaxSize(),
                 contentPadding = PaddingValues(20.dp)
-
             ) {
                 item {
                     Row(
