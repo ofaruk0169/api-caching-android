@@ -9,8 +9,13 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Scaffold
@@ -46,7 +51,17 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize(),
                     topBar = {
                         CenterAlignedTopAppBar(
-                            modifier = Modifier.height(135.dp),
+                            navigationIcon = {
+                                IconButton(onClick = { }) {
+                                    Icon(
+                                        imageVector = Icons.Default.Menu,
+                                        contentDescription = "Menu",
+                                        tint = Color(0xFFc9d1c7),
+                                        modifier = Modifier.size(30.dp)
+
+                                    )
+                                }
+                            },
                             title = {
                                 Column(
                                     horizontalAlignment = Alignment.CenterHorizontally
@@ -54,22 +69,10 @@ class MainActivity : ComponentActivity() {
                                     Text(
                                         text = "The Noble Quran",
                                         color = Color(0xFFc9d1c7),
-                                        fontWeight = FontWeight.Bold
-                                    )
-                                    Spacer(modifier = Modifier.height(10.dp))
-                                    Text(
-                                        text = "Arabic & English Quran Reader",
-                                        color = Color(0xFFc9d1c7),
-                                        style = MaterialTheme.typography.bodySmall
+                                        fontWeight = FontWeight.Bold,
                                     )
                                     Spacer(modifier = Modifier.height(5.dp))
-                                    Text(
-                                        text = "By KS Studios",
-                                        color = Color(0xFFc9d1c7),
-                                        style = MaterialTheme.typography.bodySmall
-                                    )
                                 }
-
                             },
                             colors = TopAppBarDefaults.mediumTopAppBarColors(
                                 containerColor = Color(0xFF194f09)

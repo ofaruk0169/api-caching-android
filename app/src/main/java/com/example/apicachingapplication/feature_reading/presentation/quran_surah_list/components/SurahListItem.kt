@@ -20,6 +20,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.apicachingapplication.feature_reading.domain.model.Surah
 
 @Composable
@@ -31,13 +32,25 @@ fun SurahListItem(
       modifier = Modifier
           .fillMaxWidth()
           .clickable { onItemClick(surah) }
-          .padding(25.dp),
+          .padding(
+              start = 30.dp,
+
+          ),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.Start
     ) {
         Text(
-
-            text = "${surah.surahNumber}. ${surah.surahName}",
+            text = "${surah.surahNumber}",
+            fontSize = 18.sp,
+            color = Color(199, 104, 2),
+            style = MaterialTheme.typography.bodyMedium,
+            overflow = TextOverflow.Ellipsis
+        )
+        Spacer(modifier = Modifier
+            .width(30.dp))
+        Text(
+            text = "${surah.surahName}",
+            fontSize = 18.sp,
             color = Color(199, 104, 2),
             style = MaterialTheme.typography.bodyMedium,
             overflow = TextOverflow.Ellipsis
