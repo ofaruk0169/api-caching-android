@@ -4,7 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -25,6 +28,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -46,55 +51,65 @@ class MainActivity : ComponentActivity() {
         setContent {
             APICachingApplicationTheme {
                 val navController = rememberNavController()
-                Scaffold(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    topBar = {
-                        CenterAlignedTopAppBar(
-                            navigationIcon = {
-                                IconButton(onClick = { }) {
-                                    Icon(
-                                        imageVector = Icons.Default.Menu,
-                                        contentDescription = "Menu",
-                                        tint = Color(0xFFc9d1c7),
-                                        modifier = Modifier.size(30.dp)
+                Box{
+                    Image(
+                        painter = painterResource(R.drawable.app_background),
+                        contentDescription = null,
+                        modifier = Modifier.fillMaxSize(),
+                        contentScale = ContentScale.Crop
+                    )
+                    Scaffold(
+                        modifier = Modifier
+                            .fillMaxSize(),
+                        containerColor = Color.Transparent,
+                        topBar = {
+                            CenterAlignedTopAppBar(
+                                modifier = Modifier.padding(bottom = 20.dp),
+                                navigationIcon = {
+                                    IconButton(onClick = { }) {
+                                        Icon(
+                                            imageVector = Icons.Default.Menu,
+                                            contentDescription = "Menu",
+                                            tint = Color(0xFFc9d1c7),
+                                            modifier = Modifier.size(30.dp)
 
-                                    )
-                                }
-                            },
-                            title = {
-                                Column(
-                                    horizontalAlignment = Alignment.CenterHorizontally
-                                ) {
-                                    Text(
-                                        text = "The Noble Quran",
-                                        color = Color(0xFFc9d1c7),
-                                        fontWeight = FontWeight.Bold,
-                                    )
-                                    Spacer(modifier = Modifier.height(5.dp))
-                                }
-                            },
-                            colors = TopAppBarDefaults.mediumTopAppBarColors(
-                                containerColor = Color(0xFF194f09)
+                                        )
+                                    }
+                                },
+                                title = {
+                                    Column(
+                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                    ) {
+                                        Text(
+                                            text = "The Noble Quran",
+                                            color = Color(0xFFc9d1c7),
+                                            fontWeight = FontWeight.Bold,
+                                        )
+                                        Spacer(modifier = Modifier.height(5.dp))
+                                    }
+                                },
+                                colors = TopAppBarDefaults.mediumTopAppBarColors(
+                                    containerColor = Color.Transparent
+                                )
                             )
-                        )
-                    }
-                ) { paddingValues ->
-                    NavHost(
-                        modifier = Modifier.padding(paddingValues),
-                        navController = navController,
-                        startDestination = Screen.SurahListScreen.route
-                    ) {
-                        composable(
-                            route = Screen.SurahListScreen.route
-                        ) {
-                            SurahListScreen(navController)
                         }
-
-                        composable(
-                            route = Screen.SurahDetailScreen.route + "/{surahId}"
+                    ) { paddingValues ->
+                        NavHost(
+                            modifier = Modifier.padding(paddingValues),
+                            navController = navController,
+                            startDestination = Screen.SurahListScreen.route
                         ) {
-                            SurahDetailScreen()
+                            composable(
+                                route = Screen.SurahListScreen.route
+                            ) {
+                                SurahListScreen(navController)
+                            }
+
+                            composable(
+                                route = Screen.SurahDetailScreen.route + "/{surahId}"
+                            ) {
+                                SurahDetailScreen()
+                            }
                         }
                     }
                 }

@@ -1,6 +1,9 @@
 package com.example.apicachingapplication.feature_reading.presentation.quran_surah_list
 
+import android.R.attr.top
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -25,8 +28,13 @@ fun SurahListScreen(
     viewModel: SurahListViewModel = hiltViewModel()
 ) {
     val state = viewModel.state.value
-    Box(modifier = Modifier.fillMaxSize()) {
-        LazyColumn (modifier = Modifier.fillMaxSize()) {
+    Box(
+        modifier = Modifier.fillMaxSize()) {
+        LazyColumn (
+            modifier = Modifier.fillMaxSize(),
+            contentPadding = PaddingValues(top = 25.dp)
+        )
+        {
             items(state.surahs) { surah ->
                 SurahListItem(
                     surah = surah,

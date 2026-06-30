@@ -17,6 +17,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -45,8 +46,9 @@ fun SurahDetailScreen(
                             text = "${surah.surahNo}. ${surah.surahName}",
                             style = MaterialTheme.typography.titleLarge,
                             textAlign = TextAlign.Center,
-                            modifier = Modifier.weight(8f)
-                        )
+                            modifier = Modifier.weight(8f),
+                            color = Color(0xFFA8A8FF),
+                            )
                     }
                     Spacer(modifier = Modifier.height(15.dp))
 
@@ -57,6 +59,7 @@ fun SurahDetailScreen(
                         text = surah.arabic1[index],
                         style = MaterialTheme.typography.bodyMedium,
                         textAlign = TextAlign.Center,
+                        color = Color(0xFFA8A8FF),
                         modifier =
                             Modifier
                                 .fillMaxWidth()
@@ -66,6 +69,7 @@ fun SurahDetailScreen(
                         text = surah.english[index],
                         style = MaterialTheme.typography.bodyMedium,
                         textAlign = TextAlign.Center,
+                        color = Color(0xFFA8A8FF),
                         modifier =
                             Modifier
                                 .fillMaxWidth()

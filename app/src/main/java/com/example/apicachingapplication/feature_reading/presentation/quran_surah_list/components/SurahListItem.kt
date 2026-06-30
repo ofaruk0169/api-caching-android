@@ -37,7 +37,7 @@ fun SurahListItem(
 
           ),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Start
+        horizontalArrangement = Arrangement.Center
     ) {
         Text(
             text = "${surah.surahNumber}",
@@ -51,7 +51,7 @@ fun SurahListItem(
         Text(
             text = "${surah.surahName}",
             fontSize = 18.sp,
-            color = Color(199, 104, 2),
+            color = Color(0xFFA8A8FF),
             style = MaterialTheme.typography.bodyMedium,
             overflow = TextOverflow.Ellipsis
         )
