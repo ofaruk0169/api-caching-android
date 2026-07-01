@@ -35,7 +35,12 @@ fun SurahDetailScreen(
         state.surah?.let { surah ->
             LazyColumn (
                 modifier = Modifier.fillMaxSize(),
-                contentPadding = PaddingValues(20.dp)
+                //contentPadding = PaddingValues(20.dp)
+                contentPadding = PaddingValues(
+                    top = 20.dp,
+                    start = 65.dp,
+                    end = 65.dp
+                )
             ) {
                 item {
                     Row(
@@ -55,19 +60,20 @@ fun SurahDetailScreen(
                 }
 
                 items(surah.english.size) { index ->
+                    Spacer(modifier = Modifier.height(50.dp))
                     Text(
                         text = surah.arabic1[index],
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Center,
                         color = Color(0xFFA8A8FF),
                         modifier =
                             Modifier
                                 .fillMaxWidth()
                     )
-                    Spacer(modifier = Modifier.height(15.dp))
+                    Spacer(modifier = Modifier.height(30.dp))
                     Text(
                         text = surah.english[index],
-                        style = MaterialTheme.typography.bodyMedium,
+                        style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Center,
                         color = Color(0xFFA8A8FF),
                         modifier =
