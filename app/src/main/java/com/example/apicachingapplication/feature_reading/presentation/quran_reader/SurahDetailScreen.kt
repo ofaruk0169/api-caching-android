@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
@@ -35,7 +36,6 @@ fun SurahDetailScreen(
         state.surah?.let { surah ->
             LazyColumn (
                 modifier = Modifier.fillMaxSize(),
-                //contentPadding = PaddingValues(20.dp)
                 contentPadding = PaddingValues(
                     top = 20.dp,
                     start = 65.dp,
@@ -45,22 +45,25 @@ fun SurahDetailScreen(
                 item {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.Center
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "${surah.surahNo}. ${surah.surahName}",
+                            text = "${surah.surahNo}",
                             style = MaterialTheme.typography.titleLarge,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.weight(8f),
                             color = Color(0xFFA8A8FF),
                             )
+                        Spacer(modifier = Modifier.width(15.dp))
+                        Text(
+                            text = "${surah.surahName}",
+                            style = MaterialTheme.typography.titleLarge,
+                            color = Color(0xFFA8A8FF),
+                        )
                     }
-                    Spacer(modifier = Modifier.height(15.dp))
-
+                    Spacer(modifier = Modifier.height(5.dp))
                 }
-
                 items(surah.english.size) { index ->
-                    Spacer(modifier = Modifier.height(50.dp))
+                    Spacer(modifier = Modifier.height(30.dp))
                     Text(
                         text = surah.arabic1[index],
                         style = MaterialTheme.typography.bodyLarge,
@@ -70,7 +73,7 @@ fun SurahDetailScreen(
                             Modifier
                                 .fillMaxWidth()
                     )
-                    Spacer(modifier = Modifier.height(30.dp))
+                    Spacer(modifier = Modifier.height(50.dp))
                     Text(
                         text = surah.english[index],
                         style = MaterialTheme.typography.bodyLarge,
