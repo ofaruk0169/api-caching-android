@@ -73,7 +73,7 @@ fun SurahDetailScreen(
                             Modifier
                                 .fillMaxWidth()
                     )
-                    Spacer(modifier = Modifier.height(50.dp))
+                    Spacer(modifier = Modifier.height(30.dp))
                     Text(
                         text = surah.english[index],
                         style = MaterialTheme.typography.bodyLarge,
@@ -83,6 +83,7 @@ fun SurahDetailScreen(
                             Modifier
                                 .fillMaxWidth()
                     )
+                    Spacer(modifier = Modifier.height(30.dp))
                 }
 
 
