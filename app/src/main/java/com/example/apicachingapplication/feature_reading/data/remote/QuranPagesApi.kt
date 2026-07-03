@@ -7,9 +7,6 @@ import retrofit2.http.Path
 
 interface QuranPagesApi {
 
-
-    //2 function, get all Surahs, and to get a specific Surah based on that Surah's ID.
-
     @GET("/api/surah.json")
     suspend fun getSurahs(): List<SurahDto>
 
