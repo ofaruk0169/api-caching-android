@@ -1,6 +1,7 @@
 package com.example.apicachingapplication.feature_reading.presentation.quran_surah_list.components
 
 import android.R.attr.checked
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,6 +11,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -28,37 +31,67 @@ fun SurahListItem(
     surah: Surah,
     onItemClick: (Surah) -> Unit
 ) {
-    Row(
-      modifier = Modifier
-          .fillMaxWidth()
-          .clickable { onItemClick(surah) }
-          .padding(
-          ),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
-    ) {
+    Card(
+modifier = Modifier.fillMaxWidth()
+    .padding(
+        start = 60.dp,
+        end = 60.dp
+    ),
+        border = BorderStroke(
+            width = 1.dp,
+            color = Color(0xFFF5EBDD)
+        ),
+        colors = CardDefaults.outlinedCardColors(
+            containerColor = Color.Transparent
+        )
 
-        Text(
-            text = "${surah.surahNumber}",
-            fontSize = 18.sp,
-            color = Color(199, 104, 2),
-            style = MaterialTheme.typography.bodyMedium,
-            overflow = TextOverflow.Ellipsis
-        )
-        Spacer(modifier = Modifier
-            .width(30.dp))
-        Text(
-            text = "${surah.surahName}",
-            fontSize = 18.sp,
-            color = Color(0xFFF5EBDD),
-            style = MaterialTheme.typography.bodyMedium,
-            overflow = TextOverflow.Ellipsis
-        )
-        Spacer(modifier = Modifier
-            .height(30.dp))
+
+    ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable { onItemClick(surah) }
+                    .padding(
+                    ),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+
+                Text(
+                    text = "${surah.surahNumber}",
+                    fontSize = 18.sp,
+                    color = Color(0xFFD4AF37),
+                    style = MaterialTheme.typography.bodyMedium,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Spacer(
+                    modifier = Modifier
+                        .width(30.dp)
+                )
+                Text(
+                    text = "${surah.surahName}",
+                    fontSize = 18.sp,
+                    color = Color(0xFFF5EBDD),
+                    style = MaterialTheme.typography.bodyMedium,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Spacer(
+                    modifier = Modifier
+                        .height(60.dp)
+                )
+
+            }
+
+
+        }
+
+    Spacer(
+        modifier = Modifier
+            .height(40.dp)
+    )
 
     }
-}
+
 
 @Preview(showBackground = true)
 @Composable
