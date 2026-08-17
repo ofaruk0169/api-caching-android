@@ -7,6 +7,8 @@ import com.example.apicachingapplication.feature_reading.domain.repository.Surah
 import javax.inject.Inject
 
 class SurahRepositoryImpl @Inject constructor(
+
+
     private val api: QuranPagesApi
 ): SurahRepository {
     override suspend fun getSurahs(): List<SurahDto> {

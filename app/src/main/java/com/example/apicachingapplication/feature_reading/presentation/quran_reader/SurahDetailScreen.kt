@@ -51,13 +51,13 @@ fun SurahDetailScreen(
                         Text(
                             text = "${surah.surahNo}",
                             style = MaterialTheme.typography.titleLarge,
-                            color = Color(0xFFA8A8FF),
+                            color = Color(0xFFF5EBDD),
                             )
                         Spacer(modifier = Modifier.width(15.dp))
                         Text(
                             text = "${surah.surahName}",
                             style = MaterialTheme.typography.titleLarge,
-                            color = Color(0xFFA8A8FF),
+                            color = Color(0xFFF5EBDD),
                         )
                     }
                     Spacer(modifier = Modifier.height(5.dp))
@@ -68,7 +68,7 @@ fun SurahDetailScreen(
                         text = surah.arabic1[index],
                         style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Center,
-                        color = Color(0xFFA8A8FF),
+                        color = Color(0xFFF5EBDD),
                         modifier =
                             Modifier
                                 .fillMaxWidth()
@@ -78,7 +78,7 @@ fun SurahDetailScreen(
                         text = surah.english[index],
                         style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Center,
-                        color = Color(0xFFA8A8FF),
+                        color = Color(0xFFF5EBDD),
                         modifier =
                             Modifier
                                 .fillMaxWidth()

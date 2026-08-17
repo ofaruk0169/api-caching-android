@@ -33,35 +33,28 @@ fun SurahListItem(
           .fillMaxWidth()
           .clickable { onItemClick(surah) }
           .padding(
-              start = 30.dp,
-
           ),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
-        Text(
-            text = "${surah.surahNumber}",
-            fontSize = 18.sp,
-            color = Color(199, 104, 2),
-            style = MaterialTheme.typography.bodyMedium,
-            overflow = TextOverflow.Ellipsis
-        )
-        Spacer(modifier = Modifier
-            .width(30.dp))
-        Text(
-            text = "${surah.surahName}",
-            fontSize = 18.sp,
-            color = Color(0xFFA8A8FF),
-            style = MaterialTheme.typography.bodyMedium,
-            overflow = TextOverflow.Ellipsis
-        )
-        Spacer(modifier = Modifier
-            .width(30.dp))
 
-        Checkbox(
+
+        Text(
+            text = "${surah.surahNumber}" + "   " + "${surah.surahName}",
+            fontSize = 18.sp,
+            color = Color(0xFFF5EBDD),
+            style = MaterialTheme.typography.bodyMedium,
+            overflow = TextOverflow.Ellipsis
+        )
+
+        Spacer(modifier = Modifier
+            .height(30.dp))
+
+        /*
+       Checkbox(
             checked = true,
             onCheckedChange = { }
-        )
+        )*/
     }
 }
 
