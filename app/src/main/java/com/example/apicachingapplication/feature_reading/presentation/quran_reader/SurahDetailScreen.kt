@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -21,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.apicachingapplication.feature_reading.presentation.Screen
@@ -49,9 +51,9 @@ fun SurahDetailScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "${surah.surahNo}",
+                            text = "${surah.surahNo }" + ".",
                             style = MaterialTheme.typography.titleLarge,
-                            color = Color(0xFFF5EBDD),
+                            color = Color(0xFFD4AF37),
                             )
                         Spacer(modifier = Modifier.width(15.dp))
                         Text(
@@ -60,13 +62,40 @@ fun SurahDetailScreen(
                             color = Color(0xFFF5EBDD),
                         )
                     }
-                    Spacer(modifier = Modifier.height(5.dp))
+
+                    Spacer(modifier = Modifier.height(25.dp))
+
+                    HorizontalDivider(
+                        modifier = Modifier.fillMaxWidth(),
+                        thickness = 1.dp,
+                        color = Color(0xFFD4AF37)
+                    )
+
                 }
+
+
                 items(surah.english.size) { index ->
                     Spacer(modifier = Modifier.height(30.dp))
+
+                    Text(
+                        text = (index + 1).toString(),
+                        style = MaterialTheme.typography.bodyLarge,
+                        textAlign = TextAlign.Start,
+                        color = Color(0xFFD4AF37),
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(start = 8.dp)
+                    )
+
+                    Spacer(modifier = Modifier.height(30.dp))
+
                     Text(
                         text = surah.arabic1[index],
-                        style = MaterialTheme.typography.bodyLarge,
+                        style = MaterialTheme.typography.bodyLarge.copy(
+                            fontSize = 34.sp
+                        ),
+                        lineHeight = 48.sp,
                         textAlign = TextAlign.Center,
                         color = Color(0xFFF5EBDD),
                         modifier =
@@ -84,6 +113,19 @@ fun SurahDetailScreen(
                                 .fillMaxWidth()
                     )
                     Spacer(modifier = Modifier.height(30.dp))
+
+
+
+                    HorizontalDivider(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 30.dp, end = 30.dp)
+                        ,
+                        thickness = 1.dp,
+                        color = Color(0xFFD4AF37),
+                    )
+
+
                 }
             }
         }
@@ -103,4 +145,5 @@ fun SurahDetailScreen(
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
     }
+
 }

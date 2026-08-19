@@ -11,6 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.apicachingapplication.feature_reading.domain.model.SurahDetail
 
+/*
 @Composable
 fun SurahBodyItem(
     surahStructure: SurahDetail,
@@ -26,5 +27,5 @@ fun SurahBodyItem(
         )
         Spacer(modifier = Modifier.height(4.dp))
     }
-
 }
+*/
