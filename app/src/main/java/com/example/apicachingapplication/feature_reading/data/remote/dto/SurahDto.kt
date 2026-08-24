@@ -1,6 +1,6 @@
 package com.example.apicachingapplication.feature_reading.data.remote.dto
 
-import com.example.apicachingapplication.feature_reading.domain.model.Surah
+import com.example.apicachingapplication.feature_reading.domain.model.SurahListItem
 
 data class SurahDto(
     val revelationPlace: String,
@@ -13,8 +13,8 @@ data class SurahDto(
 
 
 
-fun SurahDto.toSurah(surahNumber: Int): Surah {
-    return Surah(
+fun SurahDto.toSurah(surahNumber: Int): SurahListItem {
+    return SurahListItem(
         surahName = surahName,
         totalAyah = totalAyah,
         surahNumber = surahNumber

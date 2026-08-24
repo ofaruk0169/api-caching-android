@@ -1,9 +1,7 @@
 package com.example.apicachingapplication.feature_reading.domain.use_case
 
 import com.example.apicachingapplication.core.Resource
-import com.example.apicachingapplication.feature_reading.data.remote.dto.toSurah
 import com.example.apicachingapplication.feature_reading.data.remote.dto.toSurahDetail
-import com.example.apicachingapplication.feature_reading.domain.model.Surah
 import com.example.apicachingapplication.feature_reading.domain.model.SurahDetail
 import com.example.apicachingapplication.feature_reading.domain.repository.SurahRepository
 import kotlinx.coroutines.flow.Flow
