@@ -84,8 +84,16 @@ class MainActivity : ComponentActivity() {
                                             text = "The Noble Quran",
                                             color = Color(0xFFc9d1c7),
                                             fontWeight = FontWeight.Bold,
+                                            style = MaterialTheme.typography.headlineLarge
                                         )
                                         Spacer(modifier = Modifier.height(5.dp))
+                                        Text(
+                                            text = "KS Studio",
+                                            color = Color(0xFFc9d1c7),
+                                            fontWeight = FontWeight.Bold,
+                                            style = MaterialTheme.typography.titleMedium
+                                        )
+                                        Spacer(modifier = Modifier.height(20.dp))
                                     }
                                 },
                                 colors = TopAppBarDefaults.mediumTopAppBarColors(
