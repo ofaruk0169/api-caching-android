@@ -10,11 +10,12 @@ import com.example.apicachingapplication.feature_reading.domain.model.SurahDetai
     entities = [SurahDetail::class],
     version = 1
 )
-abstract class TaskDatabase: RoomDatabase() {
+abstract class QuranDatabase: RoomDatabase() {
 
-    abstract val dao: TaskDao
+    abstract val dao: QuranDao
 
     companion object {
-        const val DATABASE_NAME = "tasks_db"
+        const val DATABASE_NAME = "quran_db"
     }
-}*/
+}
+*/
