@@ -1,5 +1,6 @@
 package com.example.apicachingapplication.feature_reading.data.remote.dto
 
+import com.example.apicachingapplication.feature_reading.domain.model.AyahEntity
 import com.example.apicachingapplication.feature_reading.domain.model.SurahDetail
 
 data class SurahDetailDto(
@@ -26,5 +27,9 @@ fun SurahDetailDto.toSurahDetail(): SurahDetail {
         surahName = surahName,
         surahNameTranslation = surahNameTranslation
     )
+}
+
+fun SurahDetailDto.toAyahEntities() : AyahEntity {
+    return AyahEntity ()
 
 }
