@@ -112,7 +112,6 @@ class MainActivity : ComponentActivity() {
                             ) {
                                 SurahListScreen(navController)
                             }
-
                             composable(
                                 route = Screen.SurahDetailScreen.route + "/{surahId}"
                             ) {
