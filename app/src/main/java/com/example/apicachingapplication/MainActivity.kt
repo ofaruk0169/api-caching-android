@@ -10,11 +10,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -31,6 +33,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
@@ -100,6 +103,20 @@ class MainActivity : ComponentActivity() {
                                     containerColor = Color.Transparent
                                 )
                             )
+                        },
+
+                        bottomBar = {
+                            BottomAppBar(
+                                containerColor = Color.Transparent,
+                                contentColor = MaterialTheme.colorScheme.primary,
+                            ) {
+                                Text(
+                                    modifier = Modifier
+                                        .fillMaxWidth(),
+                                    textAlign = TextAlign.Center,
+                                    text = "Bottom app bar",
+                                )
+                            }
                         }
                     ) { paddingValues ->
                         NavHost(
