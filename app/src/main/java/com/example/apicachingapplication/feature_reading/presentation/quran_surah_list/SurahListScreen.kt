@@ -53,20 +53,6 @@ fun SurahListScreen(
             }
         }
 
-      /*  IconButton(
-            onClick = { *//* handle download *//* },
-            modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .padding(16.dp)
-                .background(color = Color.Magenta, shape = CircleShape)
-                .size(56.dp)
-        ) {
-            Icon(
-                imageVector = Icons.Filled.KeyboardArrowDown,
-                contentDescription = "Download"
-            )
-        }*/
-
         if(state.error.isNotBlank()) {
             Text(
                 text = state.error,

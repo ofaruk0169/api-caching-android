@@ -30,11 +30,12 @@ fun SurahListItem(
     onItemClick: (SurahListItem) -> Unit
 ) {
     Card(
-modifier = Modifier.fillMaxWidth()
-    .padding(
-        start = 60.dp,
-        end = 60.dp
-    ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(
+                start = 60.dp,
+                end = 60.dp
+        ),
         border = BorderStroke(
             width = 1.dp,
             color = Color(0xFFF5EBDD)
@@ -42,7 +43,6 @@ modifier = Modifier.fillMaxWidth()
         colors = CardDefaults.outlinedCardColors(
             containerColor = Color.Transparent
         )
-
 
     ) {
             Row(

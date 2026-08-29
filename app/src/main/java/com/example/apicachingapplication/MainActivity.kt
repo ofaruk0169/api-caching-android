@@ -4,10 +4,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,10 +20,10 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -33,7 +34,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
@@ -44,6 +44,8 @@ import com.example.apicachingapplication.feature_reading.presentation.Screen
 import com.example.apicachingapplication.feature_reading.presentation.quran_reader.SurahDetailScreen
 import com.example.apicachingapplication.feature_reading.presentation.quran_surah_list.SurahListScreen
 import dagger.hilt.android.AndroidEntryPoint
+import androidx.compose.material.icons.filled.Download
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -108,16 +110,36 @@ class MainActivity : ComponentActivity() {
                         bottomBar = {
                             BottomAppBar(
                                 containerColor = Color.Transparent,
-                                contentColor = MaterialTheme.colorScheme.primary,
+                                contentColor = Color(0xFFF5EBDD),
+                                modifier = Modifier
+                                    .border(
+                                        BorderStroke(
+                                            width = 1.dp,
+                                            color = Color(0xFFF5EBDD)
+                                        )
+                                    )
                             ) {
-                                Text(
-                                    modifier = Modifier
-                                        .fillMaxWidth(),
-                                    textAlign = TextAlign.Center,
-                                    text = "Bottom app bar",
-                                )
+
+                                Box(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    FilledIconButton(
+                                        onClick = { /* TODO */ },
+                                        modifier = Modifier
+                                            .size(48.dp),
+                                    ) {
+                                        Icon(
+                                            imageVector = Icons.Default.Download,
+                                            contentDescription = "Download"
+                                        )
+                                    }
+
+                                }
+
                             }
                         }
+
                     ) { paddingValues ->
                         NavHost(
                             modifier = Modifier.padding(paddingValues),
