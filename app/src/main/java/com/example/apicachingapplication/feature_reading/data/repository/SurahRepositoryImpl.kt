@@ -8,7 +8,6 @@ import javax.inject.Inject
 
 class SurahRepositoryImpl @Inject constructor(
 
-
     private val api: QuranPagesApi
 ): SurahRepository {
     override suspend fun getSurahs(): List<SurahDto> {
