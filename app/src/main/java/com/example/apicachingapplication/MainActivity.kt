@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.BottomAppBar
@@ -115,8 +116,9 @@ class MainActivity : ComponentActivity() {
                                     .border(
                                         BorderStroke(
                                             width = 1.dp,
-                                            color = Color(0xFFF5EBDD)
-                                        )
+                                            color = Color(0xFFF5EBDD),
+                                        ),
+                                        shape = RoundedCornerShape(12.dp)
                                     )
                             ) {
 
