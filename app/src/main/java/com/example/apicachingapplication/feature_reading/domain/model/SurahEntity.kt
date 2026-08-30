@@ -1,12 +1,12 @@
 package com.example.apicachingapplication.feature_reading.domain.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
-// this is UI facing presentation layer
-
-data class SurahDetail(
+@Entity
+data class SurahEntity(
+    @PrimaryKey
     val surahNo: Int,
-    val arabic1: List<String>,
-    val english: List<String>,
     val surahName: String,
     val surahNameTranslation: String
 )

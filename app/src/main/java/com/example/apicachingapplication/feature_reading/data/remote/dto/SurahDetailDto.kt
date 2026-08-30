@@ -2,6 +2,7 @@ package com.example.apicachingapplication.feature_reading.data.remote.dto
 
 import com.example.apicachingapplication.feature_reading.domain.model.AyahEntity
 import com.example.apicachingapplication.feature_reading.domain.model.SurahDetail
+import com.example.apicachingapplication.feature_reading.domain.model.SurahEntity
 
 data class SurahDetailDto(
     val arabic1: List<String>,
@@ -29,13 +30,22 @@ fun SurahDetailDto.toSurahDetail(): SurahDetail {
     )
 }
 
-/*
-fun SurahDetailDto.toAyahEntities() : AyahEntity {
-    return AyahEntity (
+fun SurahDetailDto.toSurahEntity(): SurahEntity {
+    return SurahEntity(
         surahNo = surahNo,
-        ayahNo = ayahNo,
-        english = english,
-        arabic1 = arabic1
+        surahName = surahName,
+        surahNameTranslation = surahNameTranslation
     )
+}
 
-}*/
+
+fun SurahDetailDto.toAyahEntities() : List<AyahEntity> {
+    return arabic1.mapIndexed { index, arabicText ->
+        AyahEntity(
+            surahNo = surahNo,
+            ayahNo = index + 1,
+            english = english[index],
+            arabic1 = arabicText
+        )
+    }
+}

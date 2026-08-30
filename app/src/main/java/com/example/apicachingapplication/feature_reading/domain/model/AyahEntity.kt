@@ -1,7 +1,6 @@
 package com.example.apicachingapplication.feature_reading.domain.model
 
 import androidx.room.Entity
-import androidx.room.PrimaryKey
 
 @Entity(primaryKeys = arrayOf("surahNo", "ayahNo"))
 data class AyahEntity (
