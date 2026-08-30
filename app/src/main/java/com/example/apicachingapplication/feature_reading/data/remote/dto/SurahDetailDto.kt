@@ -29,7 +29,13 @@ fun SurahDetailDto.toSurahDetail(): SurahDetail {
     )
 }
 
+/*
 fun SurahDetailDto.toAyahEntities() : AyahEntity {
-    return AyahEntity ()
+    return AyahEntity (
+        surahNo = surahNo,
+        ayahNo = ayahNo,
+        english = english,
+        arabic1 = arabic1
+    )
 
-}
+}*/

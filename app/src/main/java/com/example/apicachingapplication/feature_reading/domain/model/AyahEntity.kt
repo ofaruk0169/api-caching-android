@@ -1,4 +1,12 @@
 package com.example.apicachingapplication.feature_reading.domain.model
 
-class AyahEntity {
-}
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(primaryKeys = arrayOf("surahNo", "ayahNo"))
+data class AyahEntity (
+    val surahNo: Int,
+    val ayahNo: Int,
+    val english: String,
+    val arabic1: String
+)
