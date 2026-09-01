@@ -20,14 +20,12 @@ class CacheSurahUseCase (
     operator fun invoke(surahId: String): Flow<Resource<List<AyahEntity>>> = flow {
         try {
             emit(Resource.Loading<List<AyahEntity>>())
-            val surahAyah = repository.getSurahById(surahId).toAyahEntities()
-            val surah = repository.getSurahById(surahId).toSurahEntity()
-
             val dto = repository.getSurahById(surahId)
-            val sur
+            val surah = dto.toSurahEntity()
+            val ayahs = dto.toAyahEntities()
+            repository.cacheSurah(surah, ayahs)
 
-
-            emit(Resource.Success<List<AyahEntity>>(surahAyah))
+            emit(Resource.Success<List<AyahEntity>>(ayahs))
         } catch (e: HttpException) {
             emit(Resource.Error<List<AyahEntity>>(e.localizedMessage ?: "An unexpected  error occured"))
         } catch (e: IOException) {

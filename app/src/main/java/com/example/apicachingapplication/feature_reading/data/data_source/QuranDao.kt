@@ -9,9 +9,5 @@ import com.example.apicachingapplication.feature_reading.domain.model.SurahEntit
 @Dao
 interface QuranDao {
     @Upsert
-    suspend fun upsertSurah(surah: SurahEntity)
-
-    @Upsert
-    suspend fun upsertAyahs(ayahs: List<AyahEntity>)
-
+    suspend fun cacheSurah(surah: SurahEntity, ayahs: List<AyahEntity>)
 }
