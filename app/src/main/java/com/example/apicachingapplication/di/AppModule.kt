@@ -1,6 +1,9 @@
 package com.example.apicachingapplication.di
 
+import android.app.Application
+import androidx.room.Room
 import com.example.apicachingapplication.core.Constants
+import com.example.apicachingapplication.feature_reading.data.data_source.QuranDatabase
 import com.example.apicachingapplication.feature_reading.data.remote.QuranPagesApi
 import com.example.apicachingapplication.feature_reading.data.repository.SurahRepositoryImpl
 import com.example.apicachingapplication.feature_reading.domain.repository.SurahRepository
@@ -17,6 +20,22 @@ import javax.inject.Singleton
 
 object AppModule {
 
+
+    //database///
+
+    @Provides
+    @Singleton
+    fun provideQuranDatabase(app: Application): QuranDatabase {
+        return Room.databaseBuilder(
+            app,
+            QuranDatabase::class.java,
+            QuranDatabase.DATABASE_NAME
+        ).build()
+    }
+
+
+    ///network ///
+
     @Provides
     @Singleton
     fun provideQuranPagesApi(): QuranPagesApi {
@@ -29,7 +48,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideSurahRepository(api: QuranPagesApi): SurahRepository {
-        return SurahRepositoryImpl(api)
+    fun provideSurahRepository(api: QuranPagesApi, db: QuranDatabase): SurahRepository {
+        return SurahRepositoryImpl(api, db.dao)
     }
+
 }
