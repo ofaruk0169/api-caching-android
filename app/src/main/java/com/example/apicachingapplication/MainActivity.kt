@@ -136,9 +136,7 @@ class MainActivity : ComponentActivity() {
                                             contentDescription = "Download"
                                         )
                                     }
-
                                 }
-
                             }
                         }
 
