@@ -1,6 +1,7 @@
 package com.example.apicachingapplication
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -114,6 +115,7 @@ class MainActivity : ComponentActivity() {
                             val backStackEntryState = navController.currentBackStackEntryAsState()
                             val currentRoute = backStackEntryState.value?.destination?.route
 
+                            Log.d("NavDebug", "Current route: $currentRoute")
 
                             BottomAppBar(
                                 containerColor = Color.Transparent,
@@ -132,15 +134,33 @@ class MainActivity : ComponentActivity() {
                                     modifier = Modifier.fillMaxWidth(),
                                     contentAlignment = Alignment.Center
                                 ) {
-                                    FilledIconButton(
-                                        onClick = { /* TODO */ },
-                                        modifier = Modifier
-                                            .size(48.dp),
-                                    ) {
-                                        Icon(
-                                            imageVector = Icons.Default.Download,
-                                            contentDescription = "Download"
-                                        )
+//getting current screen from the backstack in order to dynamically change bottom bar download button
+                                    when (currentRoute) {
+                                        Screen.SurahListScreen.route -> {
+                                            FilledIconButton(
+                                                onClick = { /* TODO */ },
+                                                modifier = Modifier
+                                                    .size(48.dp),
+                                            ) {
+                                                Icon(
+                                                    imageVector = Icons.Default.Download,
+                                                    contentDescription = "Cache all surah"
+                                                )
+                                            }
+                                        }
+                                        Screen.SurahDetailScreen.route + "/{surahId}" -> {
+                                            FilledIconButton(
+                                                onClick = { /* TODO */ },
+                                                modifier = Modifier
+                                                    .size(48.dp),
+                                            ) {
+                                                Icon(
+                                                    imageVector = Icons.Default.Download,
+                                                    contentDescription = "Cache Current Surahs"
+                                                )
+                                            }
+                                        }
+                                        else -> {}
                                     }
                                 }
                             }
