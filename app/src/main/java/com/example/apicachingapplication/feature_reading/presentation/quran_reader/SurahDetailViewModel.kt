@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.apicachingapplication.core.Constants
 import com.example.apicachingapplication.core.Resource
+import com.example.apicachingapplication.feature_reading.domain.use_case.CacheSurahUseCase
 import com.example.apicachingapplication.feature_reading.domain.use_case.GetSurahUseCase
 import com.example.apicachingapplication.feature_reading.domain.use_case.GetSurahsUseCase
 import com.example.apicachingapplication.feature_reading.presentation.quran_surah_list.SurahListState
@@ -18,6 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SurahDetailViewModel @Inject constructor(
     private val getSurahUseCase: GetSurahUseCase,
+    private val cacheSurahUseCase: CacheSurahUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
