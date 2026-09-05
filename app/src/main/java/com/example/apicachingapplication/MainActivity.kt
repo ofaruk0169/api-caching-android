@@ -46,6 +46,8 @@ import com.example.apicachingapplication.feature_reading.presentation.quran_read
 import com.example.apicachingapplication.feature_reading.presentation.quran_surah_list.SurahListScreen
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.material.icons.filled.Download
+import androidx.navigation.NavController
+import androidx.navigation.compose.currentBackStackEntryAsState
 
 
 @AndroidEntryPoint
@@ -78,7 +80,6 @@ class MainActivity : ComponentActivity() {
                                             contentDescription = "Menu",
                                             tint = Color(0xFFc9d1c7),
                                             modifier = Modifier.size(30.dp)
-
                                         )
                                     }
                                 },
@@ -109,6 +110,11 @@ class MainActivity : ComponentActivity() {
                         },
 
                         bottomBar = {
+
+                            val backStackEntryState = navController.currentBackStackEntryAsState()
+                            val currentRoute = backStackEntryState.value?.destination?.route
+
+
                             BottomAppBar(
                                 containerColor = Color.Transparent,
                                 contentColor = Color(0xFFF5EBDD),
@@ -156,6 +162,8 @@ class MainActivity : ComponentActivity() {
                             ) {
                                 SurahDetailScreen()
                             }
+
+
                         }
                     }
                 }
@@ -163,6 +171,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
