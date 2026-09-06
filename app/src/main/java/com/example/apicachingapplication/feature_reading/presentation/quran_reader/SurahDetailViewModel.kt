@@ -25,11 +25,20 @@ class SurahDetailViewModel @Inject constructor(
 
     private val _state = mutableStateOf(SurahDetailState())
     val state: State<SurahDetailState> = _state
+    private val surahId: String? = savedStateHandle.get<String>(Constants.PARAM_COIN_ID)
+
 
     init {
-        savedStateHandle.get<String>(Constants.PARAM_COIN_ID)?.let { surahId ->
+/*        savedStateHandle.get<String>(Constants.PARAM_COIN_ID)?.let { surahId ->
             getSurah(surahId)
-        }
+        }*/
+
+        surahId?.let { getSurah(it) }
+    }
+
+
+    private fun cacheSurah() {
+        surahId.let { cacheSurah(it) }
     }
 
     private fun getSurah(surahId: String) {
