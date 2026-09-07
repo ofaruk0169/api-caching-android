@@ -1,5 +1,6 @@
 package com.example.apicachingapplication.feature_reading.presentation.quran_reader
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
@@ -35,7 +36,21 @@ class SurahDetailViewModel @Inject constructor(
 
 
     private fun cacheSurah() {
-        surahId?.let { cacheSurahUseCase(it) }
+        surahId?.let { cacheSurahUseCase(it) .onEach { result ->
+                when(result) {
+                    is Resource.Success -> {
+                        Log.d("CacheSurah", "Surah Cached")
+
+                    }
+                    is Resource.Error -> {
+                        Log.d("CacheSurah", "Surah Failed to Cache")
+                    }
+                    is Resource.Loading -> {
+                        Log.d("CacheSurah", "Surah Cache Loading")
+                    }
+                }
+            }
+        }?.launchIn(viewModelScope)
     }
 
     private fun getSurah(surahId: String) {
