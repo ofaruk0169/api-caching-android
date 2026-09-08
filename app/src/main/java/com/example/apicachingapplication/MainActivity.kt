@@ -47,8 +47,12 @@ import com.example.apicachingapplication.feature_reading.presentation.quran_read
 import com.example.apicachingapplication.feature_reading.presentation.quran_surah_list.SurahListScreen
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.material.icons.filled.Download
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
 
 @AndroidEntryPoint
@@ -57,9 +61,13 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+
+
         setContent {
             APICachingApplicationTheme {
                 val navController = rememberNavController()
+                var cacheAction by remember { mutableStateOf<() -> Unit>({}) }
                 Box{
                     Image(
                         painter = painterResource(R.drawable.app_background),
@@ -115,8 +123,6 @@ class MainActivity : ComponentActivity() {
                             val backStackEntryState = navController.currentBackStackEntryAsState()
                             val currentRoute = backStackEntryState.value?.destination?.route
 
-                            Log.d("NavDebug", "Current route: $currentRoute")
-
                             BottomAppBar(
                                 containerColor = Color.Transparent,
                                 contentColor = Color(0xFFF5EBDD),
@@ -134,11 +140,13 @@ class MainActivity : ComponentActivity() {
                                     modifier = Modifier.fillMaxWidth(),
                                     contentAlignment = Alignment.Center
                                 ) {
-//getting current screen from the backstack in order to dynamically change bottom bar download button
+
+   //getting current screen from the backstack in order to dynamically change bottom bar download button
+
                                     when (currentRoute) {
                                         Screen.SurahListScreen.route -> {
                                             FilledIconButton(
-                                                onClick = { /* TODO */ },
+                                                onClick = { cacheAction() },
                                                 modifier = Modifier
                                                     .size(48.dp),
                                             ) {
@@ -150,7 +158,7 @@ class MainActivity : ComponentActivity() {
                                         }
                                         Screen.SurahDetailScreen.route + "/{surahId}" -> {
                                             FilledIconButton(
-                                                onClick = { /* TODO */ },
+                                                onClick = { cacheAction() },
                                                 modifier = Modifier
                                                     .size(48.dp),
                                             ) {
@@ -180,10 +188,10 @@ class MainActivity : ComponentActivity() {
                             composable(
                                 route = Screen.SurahDetailScreen.route + "/{surahId}"
                             ) {
-                                SurahDetailScreen()
+                                SurahDetailScreen(
+                                    registerAction = { action -> cacheAction = action }
+                                )
                             }
-
-
                         }
                     }
                 }

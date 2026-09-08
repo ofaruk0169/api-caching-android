@@ -34,7 +34,8 @@ fun SurahDetailDto.toSurahEntity(): SurahEntity {
     return SurahEntity(
         surahNo = surahNo,
         surahName = surahName,
-        surahNameTranslation = surahNameTranslation
+        surahNameTranslation = surahNameTranslation,
+        totalAyah = totalAyah
     )
 }
 

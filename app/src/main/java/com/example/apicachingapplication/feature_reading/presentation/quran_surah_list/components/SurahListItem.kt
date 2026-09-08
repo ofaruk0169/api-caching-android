@@ -22,12 +22,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.apicachingapplication.feature_reading.domain.model.SurahListItem
+import com.example.apicachingapplication.feature_reading.domain.model.Surah
 
 @Composable
 fun SurahListItem(
-    surah: SurahListItem,
-    onItemClick: (SurahListItem) -> Unit
+    surah: Surah,
+    onItemClick: (Surah) -> Unit
 ) {
     Card(
         modifier = Modifier
@@ -96,11 +96,11 @@ fun SurahListItem(
 fun SurahListItemPreview() {
     Column {
         SurahListItem(
-            surah = SurahListItem(surahName = "Al-Fatiha", totalAyah = 7, surahNumber = 1),
+            surah = Surah(surahName = "Al-Fatiha", totalAyah = 7, surahNumber = 1),
             onItemClick = {}
         )
         SurahListItem(
-            surah = SurahListItem(surahName = "Al-Baqarah", totalAyah = 286, surahNumber = 2),
+            surah = Surah(surahName = "Al-Baqarah", totalAyah = 286, surahNumber = 2),
             onItemClick = {}
         )
     }

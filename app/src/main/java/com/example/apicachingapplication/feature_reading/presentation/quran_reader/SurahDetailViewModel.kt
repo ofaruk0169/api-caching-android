@@ -35,12 +35,11 @@ class SurahDetailViewModel @Inject constructor(
     }
 
 
-    private fun cacheSurah() {
+    fun cacheSurah() {
         surahId?.let { cacheSurahUseCase(it) .onEach { result ->
                 when(result) {
                     is Resource.Success -> {
                         Log.d("CacheSurah", "Surah Cached")
-
                     }
                     is Resource.Error -> {
                         Log.d("CacheSurah", "Surah Failed to Cache")

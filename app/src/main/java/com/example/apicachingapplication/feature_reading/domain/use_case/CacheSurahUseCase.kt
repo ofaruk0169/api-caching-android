@@ -14,7 +14,7 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
-class CacheSurahUseCase (
+class CacheSurahUseCase @Inject constructor(
     private val repository: SurahRepository
 )  {
     operator fun invoke(surahId: String): Flow<Resource<List<AyahEntity>>> = flow {

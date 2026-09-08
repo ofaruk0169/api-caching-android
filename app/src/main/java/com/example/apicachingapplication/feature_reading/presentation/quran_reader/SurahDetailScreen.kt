@@ -17,6 +17,7 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,8 +32,14 @@ import com.example.apicachingapplication.feature_reading.presentation.quran_sura
 
 @Composable
 fun SurahDetailScreen(
-    viewModel: SurahDetailViewModel = hiltViewModel()
+    viewModel: SurahDetailViewModel = hiltViewModel(),
+    registerAction: (() -> Unit) -> Unit
 ) {
+
+    LaunchedEffect(Unit) {
+        registerAction { viewModel.cacheSurah() }
+    }
+
     val state = viewModel.state.value
     Box(modifier = Modifier.fillMaxSize()) {
         state.surah?.let { surah ->
@@ -114,8 +121,6 @@ fun SurahDetailScreen(
                     )
                     Spacer(modifier = Modifier.height(30.dp))
 
-
-
                     HorizontalDivider(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -129,6 +134,8 @@ fun SurahDetailScreen(
                 }
             }
         }
+
+
 
         if(state.error.isNotBlank()) {
             Text(
@@ -145,5 +152,6 @@ fun SurahDetailScreen(
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
     }
+
 
 }
