@@ -8,7 +8,7 @@ import com.example.apicachingapplication.feature_reading.domain.model.SurahEntit
 @Database(
     //entities = our different tables within the database
     entities = [SurahEntity::class, AyahEntity::class],
-    version = 1
+    version = 2
 )
 abstract class QuranDatabase: RoomDatabase() {
 

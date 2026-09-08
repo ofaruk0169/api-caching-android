@@ -30,7 +30,8 @@ object AppModule {
             app,
             QuranDatabase::class.java,
             QuranDatabase.DATABASE_NAME
-        ).build()
+            //remember to remove fallback in production.
+        ).fallbackToDestructiveMigration().build()
     }
 
 
