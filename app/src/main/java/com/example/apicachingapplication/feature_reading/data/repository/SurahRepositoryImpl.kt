@@ -1,5 +1,6 @@
 package com.example.apicachingapplication.feature_reading.data.repository
 
+import android.util.Log
 import com.example.apicachingapplication.feature_reading.data.data_source.QuranDao
 import com.example.apicachingapplication.feature_reading.data.remote.QuranPagesApi
 import com.example.apicachingapplication.feature_reading.data.remote.dto.SurahDetailDto
@@ -19,7 +20,6 @@ class SurahRepositoryImpl @Inject constructor(
 ): SurahRepository {
     override suspend fun getSurahs(): List<Surah> {
         val cachedSurahs = dao.getAllSurahs().first()
-
         return if (cachedSurahs.isEmpty()) {
             val apiResponse = api.getSurahs()
             val surahs = apiResponse.mapIndexed { index, item -> item.toSurah(index + 1) }
