@@ -20,7 +20,7 @@ class CacheSurahUseCase @Inject constructor(
     operator fun invoke(surahId: String): Flow<Resource<List<AyahEntity>>> = flow {
         try {
             emit(Resource.Loading<List<AyahEntity>>())
-            val dto = repository.getSurahById(surahId)
+            val dto = repository.getSurahDtoById(surahId)
             val surah = dto.toSurahEntity()
             val ayahs = dto.toAyahEntities()
             repository.cacheSurah(surah, ayahs)

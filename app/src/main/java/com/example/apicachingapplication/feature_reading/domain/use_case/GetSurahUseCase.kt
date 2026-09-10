@@ -16,7 +16,7 @@ class GetSurahUseCase @Inject constructor(
     operator fun invoke(surahId: String): Flow<Resource<SurahDetail>> = flow {
         try {
             emit(Resource.Loading<SurahDetail>())
-            val surah = repository.getSurahById(surahId).toSurahDetail()
+            val surah = repository.getSurahById(surahId)
             emit(Resource.Success<SurahDetail>(surah))
         } catch (e: HttpException) {
             emit(Resource.Error<SurahDetail>(e.localizedMessage ?: "An unexpected  error occured"))
