@@ -4,6 +4,7 @@ import com.example.apicachingapplication.core.Resource
 import com.example.apicachingapplication.feature_reading.domain.model.Surah
 import com.example.apicachingapplication.feature_reading.domain.repository.SurahRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 import java.io.IOException
@@ -16,7 +17,13 @@ class GetSurahsUseCase @Inject constructor(
         try {
             emit(Resource.Loading<List<Surah>>())
                 val surahs = repository.getSurahs()
-            emit(Resource.Success<List<Surah>>(surahs))
+                val cachedSurahsNumbers = repository.getCachedSurahs().first()
+                val surahCacheStatus = surahs.map { surah ->
+                    surah.copy(isCached = surah.surahNumber in cachedSurahsNumbers)
+                }
+
+            emit(Resource.Success<List<Surah>>(surahCacheStatus))
+
         } catch (e: HttpException) {
             emit(Resource.Error<List<Surah>>(e.localizedMessage ?: "An unexpected  error occured"))
         } catch (e: IOException) {

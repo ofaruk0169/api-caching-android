@@ -1,5 +1,6 @@
 package com.example.apicachingapplication.feature_reading.presentation.quran_surah_list.components
 
+import android.R.attr.contentDescription
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -12,6 +13,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.Icon
+
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Cloud
+import androidx.compose.material.icons.filled.CloudDone
+import androidx.compose.material.icons.filled.CloudQueue
+
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -55,6 +64,18 @@ fun SurahListItem(
                 horizontalArrangement = Arrangement.Center
             ) {
 
+                Icon(
+                    imageVector = if (surah.isCached) Icons.Default.Cloud else Icons.Default.CloudQueue,
+                    contentDescription = if (surah.isCached) "Cached" else "Not cached",
+                    tint = Color(0xFFF5EBDD)
+                )
+
+                Spacer(
+                    modifier = Modifier
+                        .width(30.dp)
+                )
+
+
                 Text(
                     text = "${surah.surahNumber}",
                     fontSize = 18.sp,
@@ -77,6 +98,8 @@ fun SurahListItem(
                     modifier = Modifier
                         .height(60.dp)
                 )
+
+
 
             }
 

@@ -15,6 +15,7 @@ import javax.inject.Inject
 import com.example.apicachingapplication.feature_reading.domain.model.Surah
 import com.example.apicachingapplication.feature_reading.data.remote.dto.toSurahEntity
 import com.example.apicachingapplication.feature_reading.domain.model.SurahDetail
+import kotlinx.coroutines.flow.Flow
 
 class SurahRepositoryImpl @Inject constructor(
     private val api: QuranPagesApi,
@@ -68,6 +69,10 @@ class SurahRepositoryImpl @Inject constructor(
 
     override suspend fun cacheSurah(surah: SurahEntity, ayah: List<AyahEntity>) {
         dao.cacheSurah(surah, ayah)
+    }
+
+    override fun getCachedSurahs(): Flow<List<Int>> {
+        return dao.getCachedSurahs()
     }
 
 
