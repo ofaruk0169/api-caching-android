@@ -20,6 +20,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -33,9 +34,22 @@ import com.example.apicachingapplication.feature_reading.presentation.quran_sura
 @Composable
 fun SurahListScreen(
     navController: NavController,
-    viewModel: SurahListViewModel = hiltViewModel()
+    viewModel: SurahListViewModel = hiltViewModel(),
+    registerAction: (() -> Unit) -> Unit,
+    onCacheStatusChanged: (Boolean) -> Unit
 ) {
+
+    LaunchedEffect(Unit) {
+        viewModel.getSurahs()
+        registerAction { viewModel.cacheAllSurahs() }
+    }
+
     val state = viewModel.state.value
+
+    LaunchedEffect(state.surahs) {
+        onCacheStatusChanged(state.surahs.all {surah -> surah.isCached})
+    }
+
     Box(
         modifier = Modifier.fillMaxSize()) {
         LazyColumn (

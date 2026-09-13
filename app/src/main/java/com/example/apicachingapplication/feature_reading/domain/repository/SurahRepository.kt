@@ -19,4 +19,6 @@ interface SurahRepository {
 
     fun getCachedSurahs(): Flow<List<Int>>
 
+    suspend fun cacheAllSurah(surah: SurahEntity, ayah: List<AyahEntity>)
+
 }

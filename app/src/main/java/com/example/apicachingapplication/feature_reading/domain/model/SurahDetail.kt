@@ -8,5 +8,6 @@ data class SurahDetail(
     val arabic1: List<String>,
     val english: List<String>,
     val surahName: String,
-    val surahNameTranslation: String
+    val surahNameTranslation: String,
+    val isCached : Boolean = false
 )

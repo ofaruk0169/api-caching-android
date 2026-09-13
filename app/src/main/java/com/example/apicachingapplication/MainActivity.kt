@@ -18,6 +18,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Cloud
+import androidx.compose.material.icons.filled.CloudQueue
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -61,13 +63,14 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
-
-
         setContent {
             APICachingApplicationTheme {
                 val navController = rememberNavController()
                 var cacheAction by remember { mutableStateOf<() -> Unit>({}) }
+                var isCurrentSurahCached by remember { mutableStateOf(false) }
+                var cacheAllAction by remember { mutableStateOf<() -> Unit>({}) }
+                var isAllSurahsCached by remember { mutableStateOf(false) }
+
                 Box{
                     Image(
                         painter = painterResource(R.drawable.app_background),
@@ -146,24 +149,28 @@ class MainActivity : ComponentActivity() {
                                     when (currentRoute) {
                                         Screen.SurahListScreen.route -> {
                                             FilledIconButton(
-                                                onClick = { cacheAction() },
+                                                onClick = { cacheAllAction() },
                                                 modifier = Modifier
                                                     .size(48.dp),
                                             ) {
                                                 Icon(
-                                                    imageVector = Icons.Default.Download,
-                                                    contentDescription = "Cache all surah"
+                                                    imageVector = if (isAllSurahsCached) Icons.Default.Cloud else Icons.Default.CloudQueue,
+                                                    contentDescription = "Cache all surahs"
                                                 )
                                             }
                                         }
                                         Screen.SurahDetailScreen.route + "/{surahId}" -> {
+
+
+
                                             FilledIconButton(
                                                 onClick = { cacheAction() },
                                                 modifier = Modifier
                                                     .size(48.dp),
                                             ) {
                                                 Icon(
-                                                    imageVector = Icons.Default.Download,
+                                                   // imageVector = Icons.Default.Download,
+                                                    imageVector = if (isCurrentSurahCached) Icons.Default.Cloud else Icons.Default.CloudQueue,
                                                     contentDescription = "Cache Current Surahs"
                                                 )
                                             }
@@ -183,13 +190,18 @@ class MainActivity : ComponentActivity() {
                             composable(
                                 route = Screen.SurahListScreen.route
                             ) {
-                                SurahListScreen(navController)
+                                SurahListScreen(
+                                    navController,
+                                    registerAction = { action -> cacheAllAction = action },
+                                    onCacheStatusChanged = { cached -> isAllSurahsCached = cached }
+                                )
                             }
                             composable(
                                 route = Screen.SurahDetailScreen.route + "/{surahId}"
                             ) {
                                 SurahDetailScreen(
-                                    registerAction = { action -> cacheAction = action }
+                                    registerAction = { action -> cacheAction = action },
+                                    onCacheStatusChanged = { cached -> isCurrentSurahCached = cached }
                                 )
                             }
                         }

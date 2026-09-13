@@ -1,5 +1,6 @@
 package com.example.apicachingapplication.feature_reading.presentation.quran_surah_list
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -7,23 +8,23 @@ import javax.inject.Inject
 import androidx.compose.runtime.State
 import androidx.lifecycle.viewModelScope
 import com.example.apicachingapplication.core.Resource
+import com.example.apicachingapplication.feature_reading.domain.use_case.CacheSurahsUseCase
 import com.example.apicachingapplication.feature_reading.domain.use_case.GetSurahsUseCase
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 
 @HiltViewModel
 class SurahListViewModel @Inject constructor(
-    private val getSurahsUseCase: GetSurahsUseCase
+    private val getSurahsUseCase: GetSurahsUseCase,
+    private val cacheAllSurahsUseCase: CacheSurahsUseCase
+
 ) : ViewModel() {
     private val _state = mutableStateOf<SurahListState>(SurahListState())
     val state: State<SurahListState> = _state
 
-    init {
-        getSurahs()
-    }
-
-    private fun getSurahs() {
+    fun getSurahs() {
         getSurahsUseCase().onEach { result ->
             when(result) {
                 is Resource.Success -> {
@@ -40,4 +41,13 @@ class SurahListViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
+
+    fun cacheAllSurahs() {
+        viewModelScope.launch {
+            cacheAllSurahsUseCase()
+            getSurahs()
+        }
+    }
+
 }
+

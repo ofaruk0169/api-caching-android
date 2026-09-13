@@ -30,7 +30,6 @@ class SurahDetailViewModel @Inject constructor(
 
 
     init {
-
         surahId?.let { getSurah(it) }
     }
 
@@ -39,6 +38,9 @@ class SurahDetailViewModel @Inject constructor(
         surahId?.let { cacheSurahUseCase(it) .onEach { result ->
                 when(result) {
                     is Resource.Success -> {
+                        val currentSurah = _state.value.surah
+                        val updatedSurah = currentSurah?.copy(isCached = true)
+                        _state.value = _state.value.copy(surah = updatedSurah)
                         Log.d("CacheSurah", "Surah Cached")
                     }
                     is Resource.Error -> {

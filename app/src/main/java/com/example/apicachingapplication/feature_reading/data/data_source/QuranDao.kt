@@ -25,9 +25,14 @@ interface QuranDao {
     @Query("SELECT * FROM AyahEntity WHERE surahNo = :surahId ORDER BY ayahNo ASC")
     suspend fun getAyahEntityById(surahId: Int): List<AyahEntity>
 
+    //Caching Features
+
     @Upsert
     suspend fun cacheSurah(surah: SurahEntity, ayahs: List<AyahEntity>)
 
     @Query("SELECT DISTINCT surahNo FROM AyahEntity")
     fun getCachedSurahs(): Flow<List<Int>>
+
+    @Upsert
+    suspend fun cacheAllSurah(surah: SurahEntity, ayahs: List<AyahEntity>)
 }

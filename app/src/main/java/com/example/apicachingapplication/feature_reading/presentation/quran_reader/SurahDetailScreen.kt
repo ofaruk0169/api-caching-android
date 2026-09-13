@@ -33,7 +33,8 @@ import com.example.apicachingapplication.feature_reading.presentation.quran_sura
 @Composable
 fun SurahDetailScreen(
     viewModel: SurahDetailViewModel = hiltViewModel(),
-    registerAction: (() -> Unit) -> Unit
+    registerAction: (() -> Unit) -> Unit,
+    onCacheStatusChanged: (Boolean) -> Unit
 ) {
 
     LaunchedEffect(Unit) {
@@ -41,6 +42,11 @@ fun SurahDetailScreen(
     }
 
     val state = viewModel.state.value
+
+    LaunchedEffect(state.surah) {
+        onCacheStatusChanged(state.surah?.isCached ?: false)
+    }
+
     Box(modifier = Modifier.fillMaxSize()) {
         state.surah?.let { surah ->
             LazyColumn (

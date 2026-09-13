@@ -57,7 +57,8 @@ class SurahRepositoryImpl @Inject constructor(
                 arabic1 = arabicTexts,
                 english = englishTexts,
                 surahName = cachedSurah.surahName,
-                surahNameTranslation = cachedSurah.surahNameTranslation
+                surahNameTranslation = cachedSurah.surahNameTranslation,
+                isCached = true
             )
         }
     }
@@ -75,5 +76,8 @@ class SurahRepositoryImpl @Inject constructor(
         return dao.getCachedSurahs()
     }
 
+    override suspend fun cacheAllSurah(surah: SurahEntity, ayah: List<AyahEntity>) {
+        dao.cacheAllSurah(surah, ayah)
+    }
 
 }
