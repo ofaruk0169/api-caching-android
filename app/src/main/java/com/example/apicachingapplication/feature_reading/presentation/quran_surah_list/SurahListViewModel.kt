@@ -44,8 +44,11 @@ class SurahListViewModel @Inject constructor(
 
     fun cacheAllSurahs() {
         viewModelScope.launch {
+            _state.value = _state.value.copy(isCacheAllLoading = true)
             cacheAllSurahsUseCase()
+            _state.value = _state.value.copy(isCacheAllLoading = false)
             getSurahs()
+
         }
     }
 
