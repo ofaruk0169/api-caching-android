@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Cloud
 import androidx.compose.material.icons.filled.CloudQueue
 import androidx.compose.material.icons.filled.Menu
@@ -154,14 +155,12 @@ class MainActivity : ComponentActivity() {
                                                     .size(48.dp),
                                             ) {
                                                 Icon(
-                                                    imageVector = if (isAllSurahsCached) Icons.Default.Cloud else Icons.Default.CloudQueue,
+                                                    imageVector = if (isAllSurahsCached) Icons.Default.CheckCircle else Icons.Default.Download,
                                                     contentDescription = "Cache all surahs"
                                                 )
                                             }
                                         }
                                         Screen.SurahDetailScreen.route + "/{surahId}" -> {
-
-
 
                                             FilledIconButton(
                                                 onClick = { cacheAction() },
@@ -170,7 +169,7 @@ class MainActivity : ComponentActivity() {
                                             ) {
                                                 Icon(
                                                    // imageVector = Icons.Default.Download,
-                                                    imageVector = if (isCurrentSurahCached) Icons.Default.Cloud else Icons.Default.CloudQueue,
+                                                    imageVector = if (isCurrentSurahCached) Icons.Default.CheckCircle else Icons.Default.Download,
                                                     contentDescription = "Cache Current Surahs"
                                                 )
                                             }

@@ -17,9 +17,11 @@ import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Cloud
 import androidx.compose.material.icons.filled.CloudDone
 import androidx.compose.material.icons.filled.CloudQueue
+import androidx.compose.material.icons.filled.Download
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -65,7 +67,7 @@ fun SurahListItem(
             ) {
 
                 Icon(
-                    imageVector = if (surah.isCached) Icons.Default.Cloud else Icons.Default.CloudQueue,
+                    imageVector = if (surah.isCached) Icons.Default.CheckCircle else Icons.Default.Download,
                     contentDescription = if (surah.isCached) "Cached" else "Not cached",
                     tint = Color(0xFFF5EBDD)
                 )
