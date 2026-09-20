@@ -10,8 +10,12 @@ import com.example.apicachingapplication.core.Constants
 import com.example.apicachingapplication.feature_reading.data.data_source.QuranDatabase
 import com.example.apicachingapplication.feature_reading.data.remote.QuranPagesApi
 import com.example.apicachingapplication.feature_reading.data.repository.SurahRepositoryImpl
+import com.example.apicachingapplication.feature_reading.data.repository.TextSizeRepositoryImpl
 import com.example.apicachingapplication.feature_reading.domain.repository.SurahRepository
 import com.example.apicachingapplication.feature_reading.domain.repository.TextSizeRepository
+import com.example.apicachingapplication.feature_reading.domain.use_case.DecreaseTextSizeUseCase
+import com.example.apicachingapplication.feature_reading.domain.use_case.IncreaseTextSizeUseCase
+import com.example.apicachingapplication.feature_reading.domain.use_case.TextSizeUseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -71,16 +75,16 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideUserPreferencesRepository (dataStore: DataStore<Preferences>): TextSizeRepository {
+    fun provideTextSizeRepository (dataStore: DataStore<Preferences>): TextSizeRepository {
         return TextSizeRepositoryImpl(dataStore)
     }
 
     @Provides
     @Singleton
-    fun provideUserPreferencesUseCases(repository: UserPreferencesRepository): PreferencesUseCases {
-        return PreferencesUseCases(
-            increaseSp = IncreaseSp(repository),
-            decreaseSp = DescreaseSp(repository)
+    fun provideTextSizeUseCases(repository: TextSizeRepository): TextSizeUseCases {
+        return TextSizeUseCases(
+            increaseTextSize = IncreaseTextSizeUseCase(repository),
+            decreaseTextSize = DecreaseTextSizeUseCase(repository)
         )
     }
 }
