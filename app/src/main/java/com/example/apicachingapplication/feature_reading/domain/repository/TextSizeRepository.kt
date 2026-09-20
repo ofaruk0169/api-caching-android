@@ -1,12 +1,9 @@
 package com.example.apicachingapplication.feature_reading.domain.repository
 
+import com.example.apicachingapplication.core.TextSizeOption
+import kotlinx.coroutines.flow.Flow
+
 interface TextSizeRepository {
-
-    suspend fun increaseSp(): String
-
-    suspend fun decreaseSp(username: String)
-
-    suspend fun getTextSize()
-
-    suspend fun setTextSize()
+    fun getTextSize(): Flow<TextSizeOption>
+    suspend fun setTextSize(option: TextSizeOption)
 }
