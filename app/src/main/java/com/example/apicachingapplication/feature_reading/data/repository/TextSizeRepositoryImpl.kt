@@ -25,8 +25,10 @@ class TextSizeRepositoryImpl(
     }
 
 
-    override suspend fun setTextSize() {
-
+    override suspend fun setTextSize(textsize : TextSizeOption) {
+        dataStore.edit {
+            it[TEXTSIZE_KEY] = textsize.name
+        }
     }
 
 }
