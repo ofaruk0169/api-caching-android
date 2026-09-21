@@ -8,8 +8,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,6 +20,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Cloud
 import androidx.compose.material.icons.filled.CloudQueue
@@ -50,6 +53,7 @@ import com.example.apicachingapplication.feature_reading.presentation.quran_read
 import com.example.apicachingapplication.feature_reading.presentation.quran_surah_list.SurahListScreen
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.Remove
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.navigation.NavController
@@ -155,16 +159,49 @@ class MainActivity : ComponentActivity() {
 
                                     when (currentRoute) {
                                         Screen.SurahListScreen.route -> {
-                                            FilledIconButton(
-                                                onClick = { cacheAllAction() },
-                                                modifier = Modifier
-                                                    .size(48.dp),
+
+                                            Row(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
+                                                verticalAlignment = Alignment.CenterVertically,
                                             ) {
-                                                Icon(
-                                                    imageVector = if (isAllSurahsCached) Icons.Default.CheckCircle else Icons.Default.Download,
-                                                    contentDescription = "Cache all surahs"
-                                                )
+                                                FilledIconButton(
+                                                    onClick = { cacheAllAction() },
+                                                    modifier = Modifier
+                                                        .size(48.dp),
+                                                ) {
+                                                    Icon(
+                                                        imageVector = if (isAllSurahsCached) Icons.Default.CheckCircle else Icons.Default.Download,
+                                                        contentDescription = "Cache all surahs"
+                                                    )
+                                                }
+
+                                                //size buttons below
+
+                                                FilledIconButton(
+                                                    onClick = { cacheAllAction() },
+                                                    modifier = Modifier
+                                                        .size(48.dp),
+                                                ) {
+                                                    Icon(
+                                                        imageVector = Icons.Default.Remove,
+                                                        contentDescription = "Decrease Text Size"
+                                                    )
+                                                }
+
+                                                FilledIconButton(
+                                                    onClick = { cacheAllAction() },
+                                                    modifier = Modifier
+                                                        .size(48.dp),
+                                                ) {
+                                                    Icon(
+                                                        imageVector = Icons.Default.Add ,
+                                                        contentDescription = "Increase Text Size"
+                                                    )
+                                                }
+
                                             }
+
                                         }
                                         Screen.SurahDetailScreen.route + "/{surahId}" -> {
 
@@ -179,6 +216,20 @@ class MainActivity : ComponentActivity() {
                                                     contentDescription = "Cache Current Surahs"
                                                 )
                                             }
+
+                                            FilledIconButton(
+                                                onClick = { cacheAction() },
+                                                modifier = Modifier
+                                                    .size(48.dp),
+                                            ) {
+                                                Icon(
+                                                    // imageVector = Icons.Default.Download,
+                                                    imageVector = if (isCurrentSurahCached) Icons.Default.CheckCircle else Icons.Default.Download,
+                                                    contentDescription = "Cache Current Surahs"
+                                                )
+                                            }
+
+
                                         }
                                         else -> {}
                                     }
