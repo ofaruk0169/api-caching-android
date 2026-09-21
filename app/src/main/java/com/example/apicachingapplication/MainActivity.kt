@@ -57,11 +57,15 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(
+        savedInstanceState: Bundle?
+        viewModel
+
+
+    ) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
@@ -145,7 +149,7 @@ class MainActivity : ComponentActivity() {
                                     contentAlignment = Alignment.Center
                                 ) {
 
-   //getting current screen from the backstack in order to dynamically change bottom bar download button
+                                    //getting current screen from the backstack in order to dynamically change bottom bar download button
 
                                     when (currentRoute) {
                                         Screen.SurahListScreen.route -> {
