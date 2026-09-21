@@ -56,15 +56,14 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.example.apicachingapplication.feature_reading.presentation.TextSizeViewModel
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(
         savedInstanceState: Bundle?
-        viewModel
-
-
     ) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -75,6 +74,9 @@ class MainActivity : ComponentActivity() {
                 var isCurrentSurahCached by remember { mutableStateOf(false) }
                 var cacheAllAction by remember { mutableStateOf<() -> Unit>({}) }
                 var isAllSurahsCached by remember { mutableStateOf(false) }
+
+                val textSizeViewModel: TextSizeViewModel = hiltViewModel()
+                val textSizeState by textSizeViewModel.textsize
 
                 Box{
                     Image(

@@ -16,25 +16,24 @@ class TextSizeViewModel @Inject constructor(
     private val _textsize = mutableStateOf(TextSizeState())
     val textsize: State<TextSizeState> = _textsize
 
-
-    private fun getTextSize() {
+    init {
         viewModelScope.launch {
-            val username = textSizeUseCases.()
-            _username.value = _username.value.copy(username = username)
+            textSizeUseCases.getTextSize().collect {
+                option -> _textsize.value = _textsize.value.copy(textSize = option)
+            }
         }
     }
 
-    fun increaseTextSize(userInput: String) {
+
+    fun increaseTextSize() {
         viewModelScope.launch {
-            _textsize.value = _textsize.value.copy(textsize = userInput)
-            textSizeUseCases.increaseTextSize(userInput)
+            textSizeUseCases.increaseTextSize()
         }
     }
 
-    fun decreaseTextSize(userInput: String) {
+    fun decreaseTextSize() {
         viewModelScope.launch {
-            _textsize.value = _textsize.value.copy(textsize = userInput)
-            textSizeUseCases.increaseTextSize(userInput)
+            textSizeUseCases.decreaseTextSize()
         }
     }
 }
