@@ -33,7 +33,6 @@ class SurahDetailViewModel @Inject constructor(
         surahId?.let { getSurah(it) }
     }
 
-
     fun cacheSurah() {
         surahId?.let { cacheSurahUseCase(it) .onEach { result ->
                 when(result) {

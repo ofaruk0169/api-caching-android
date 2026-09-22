@@ -203,32 +203,62 @@ class MainActivity : ComponentActivity() {
                                             }
 
                                         }
+
+                                        // Buttons for Detail screen
+
                                         Screen.SurahDetailScreen.route + "/{surahId}" -> {
 
-                                            FilledIconButton(
-                                                onClick = { cacheAction() },
-                                                modifier = Modifier
-                                                    .size(48.dp),
+                                            Row(
+                                                modifier = Modifier.fillMaxWidth(),
+                                                horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
+                                                verticalAlignment = Alignment.CenterVertically,
                                             ) {
-                                                Icon(
-                                                   // imageVector = Icons.Default.Download,
-                                                    imageVector = if (isCurrentSurahCached) Icons.Default.CheckCircle else Icons.Default.Download,
-                                                    contentDescription = "Cache Current Surahs"
-                                                )
-                                            }
 
-                                            FilledIconButton(
-                                                onClick = { cacheAction() },
-                                                modifier = Modifier
-                                                    .size(48.dp),
-                                            ) {
-                                                Icon(
-                                                    // imageVector = Icons.Default.Download,
-                                                    imageVector = if (isCurrentSurahCached) Icons.Default.CheckCircle else Icons.Default.Download,
-                                                    contentDescription = "Cache Current Surahs"
-                                                )
-                                            }
+                                                FilledIconButton(
+                                                    onClick = { cacheAction() },
+                                                    modifier = Modifier
+                                                        .size(48.dp),
+                                                ) {
+                                                    Icon(
+                                                        imageVector = if (isCurrentSurahCached) Icons.Default.CheckCircle else Icons.Default.Download,
+                                                        contentDescription = "Cache Current Surahs"
+                                                    )
+                                                }
 
+                                                FilledIconButton(
+                                                    onClick = { cacheAction() },
+                                                    modifier = Modifier
+                                                        .size(48.dp),
+                                                ) {
+                                                    Icon(
+                                                        imageVector = if (isCurrentSurahCached) Icons.Default.CheckCircle else Icons.Default.Download,
+                                                        contentDescription = "Cache Current Surahs"
+                                                    )
+                                                }
+
+                                                FilledIconButton(
+                                                    onClick = { textSizeViewModel.decreaseTextSize() },
+                                                    modifier = Modifier
+                                                        .size(48.dp),
+                                                ) {
+                                                    Icon(
+                                                        imageVector = Icons.Default.Remove,
+                                                        contentDescription = "Decrease Text Size"
+                                                    )
+                                                }
+
+                                                FilledIconButton(
+                                                    onClick = { textSizeViewModel.increaseTextSize() },
+                                                    modifier = Modifier
+                                                        .size(48.dp),
+                                                ) {
+                                                    Icon(
+                                                        imageVector = Icons.Default.Add ,
+                                                        contentDescription = "Increase Text Size"
+                                                    )
+                                                }
+
+                                            }
 
                                         }
                                         else -> {}
@@ -258,6 +288,7 @@ class MainActivity : ComponentActivity() {
                             ) {
                                 SurahDetailScreen(
                                     registerAction = { action -> cacheAction = action },
+                                    textSize = textSizeState.textSize,
                                     onCacheStatusChanged = { cached -> isCurrentSurahCached = cached }
                                 )
                             }

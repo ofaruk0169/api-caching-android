@@ -19,7 +19,6 @@ import kotlinx.coroutines.launch
 class SurahListViewModel @Inject constructor(
     private val getSurahsUseCase: GetSurahsUseCase,
     private val cacheAllSurahsUseCase: CacheSurahsUseCase
-
 ) : ViewModel() {
     private val _state = mutableStateOf<SurahListState>(SurahListState())
     val state: State<SurahListState> = _state

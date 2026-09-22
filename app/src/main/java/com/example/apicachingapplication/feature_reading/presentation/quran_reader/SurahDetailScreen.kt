@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.apicachingapplication.core.TextSizeOption
 import com.example.apicachingapplication.feature_reading.presentation.Screen
 import com.example.apicachingapplication.feature_reading.presentation.quran_surah_list.SurahListViewModel
 import com.example.apicachingapplication.feature_reading.presentation.quran_surah_list.components.SurahListItem
@@ -33,6 +34,7 @@ import com.example.apicachingapplication.feature_reading.presentation.quran_sura
 @Composable
 fun SurahDetailScreen(
     viewModel: SurahDetailViewModel = hiltViewModel(),
+    textSize: TextSizeOption,
     registerAction: (() -> Unit) -> Unit,
     onCacheStatusChanged: (Boolean) -> Unit
 ) {
@@ -106,7 +108,7 @@ fun SurahDetailScreen(
                     Text(
                         text = surah.arabic1[index],
                         style = MaterialTheme.typography.bodyLarge.copy(
-                            fontSize = 34.sp
+                            fontSize = textSize.arabicSp.sp
                         ),
                         lineHeight = 48.sp,
                         textAlign = TextAlign.Center,
@@ -118,7 +120,7 @@ fun SurahDetailScreen(
                     Spacer(modifier = Modifier.height(30.dp))
                     Text(
                         text = surah.english[index],
-                        style = MaterialTheme.typography.bodyLarge,
+                        fontSize = textSize.englishSp.sp,
                         textAlign = TextAlign.Center,
                         color = Color(0xFFF5EBDD),
                         modifier =
@@ -140,8 +142,6 @@ fun SurahDetailScreen(
                 }
             }
         }
-
-
 
         if(state.error.isNotBlank()) {
             Text(
