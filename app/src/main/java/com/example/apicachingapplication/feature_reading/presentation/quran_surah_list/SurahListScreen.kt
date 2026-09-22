@@ -28,12 +28,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.example.apicachingapplication.core.TextSizeOption
 import com.example.apicachingapplication.feature_reading.presentation.Screen
 import com.example.apicachingapplication.feature_reading.presentation.quran_surah_list.components.SurahListItem
 
 @Composable
 fun SurahListScreen(
     navController: NavController,
+    textSize: TextSizeOption,
     viewModel: SurahListViewModel = hiltViewModel(),
     registerAction: (() -> Unit) -> Unit,
     onCacheStatusChanged: (Boolean) -> Unit
@@ -60,6 +62,7 @@ fun SurahListScreen(
             items(state.surahs) { surah ->
                 SurahListItem(
                     surah = surah,
+                    textSize = textSize,
                     onItemClick = {
                         navController.navigate(Screen.SurahDetailScreen.route + "/${surah.surahNumber}")
                     }

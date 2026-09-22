@@ -33,11 +33,13 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.apicachingapplication.core.TextSizeOption
 import com.example.apicachingapplication.feature_reading.domain.model.Surah
 
 @Composable
 fun SurahListItem(
     surah: Surah,
+    textSize: TextSizeOption,
     onItemClick: (Surah) -> Unit
 ) {
     Card(
@@ -80,7 +82,7 @@ fun SurahListItem(
 
                 Text(
                     text = "${surah.surahNumber}",
-                    fontSize = 18.sp,
+                    fontSize = textSize.englishSp.sp,
                     color = Color(0xFFD4AF37),
                     style = MaterialTheme.typography.bodyMedium,
                     overflow = TextOverflow.Ellipsis
@@ -91,7 +93,7 @@ fun SurahListItem(
                 )
                 Text(
                     text = "${surah.surahName}",
-                    fontSize = 18.sp,
+                    fontSize = textSize.englishSp.sp,
                     color = Color(0xFFF5EBDD),
                     style = MaterialTheme.typography.bodyMedium,
                     overflow = TextOverflow.Ellipsis
@@ -116,6 +118,7 @@ fun SurahListItem(
     }
 
 
+/*
 @Preview(showBackground = true)
 @Composable
 fun SurahListItemPreview() {
@@ -129,4 +132,4 @@ fun SurahListItemPreview() {
             onItemClick = {}
         )
     }
-}
+}*/

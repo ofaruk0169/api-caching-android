@@ -179,7 +179,7 @@ class MainActivity : ComponentActivity() {
                                                 //size buttons below
 
                                                 FilledIconButton(
-                                                    onClick = { cacheAllAction() },
+                                                    onClick = { textSizeViewModel.decreaseTextSize() },
                                                     modifier = Modifier
                                                         .size(48.dp),
                                                 ) {
@@ -190,7 +190,7 @@ class MainActivity : ComponentActivity() {
                                                 }
 
                                                 FilledIconButton(
-                                                    onClick = { cacheAllAction() },
+                                                    onClick = { textSizeViewModel.increaseTextSize() },
                                                     modifier = Modifier
                                                         .size(48.dp),
                                                 ) {
@@ -248,6 +248,7 @@ class MainActivity : ComponentActivity() {
                             ) {
                                 SurahListScreen(
                                     navController,
+                                    textSize = textSizeState.textSize,
                                     registerAction = { action -> cacheAllAction = action },
                                     onCacheStatusChanged = { cached -> isAllSurahsCached = cached }
                                 )
