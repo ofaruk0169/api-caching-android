@@ -79,7 +79,6 @@ fun SurahListItem(
                         .width(30.dp)
                 )
 
-
                 Text(
                     text = "${surah.surahNumber}",
                     fontSize = textSize.englishSp.sp,

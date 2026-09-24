@@ -226,17 +226,6 @@ class MainActivity : ComponentActivity() {
                                                 }
 
                                                 FilledIconButton(
-                                                    onClick = { cacheAction() },
-                                                    modifier = Modifier
-                                                        .size(48.dp),
-                                                ) {
-                                                    Icon(
-                                                        imageVector = if (isCurrentSurahCached) Icons.Default.CheckCircle else Icons.Default.Download,
-                                                        contentDescription = "Cache Current Surahs"
-                                                    )
-                                                }
-
-                                                FilledIconButton(
                                                     onClick = { textSizeViewModel.decreaseTextSize() },
                                                     modifier = Modifier
                                                         .size(48.dp),
