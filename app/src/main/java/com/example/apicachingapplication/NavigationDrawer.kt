@@ -1,6 +1,7 @@
 package com.example.apicachingapplication
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -51,6 +52,9 @@ fun DrawerBody(
         items(items) { item ->
             Row(
                 modifier = Modifier.padding(16.dp)
+                    .clickable {
+                        onMenuItemClicked(item)
+                    }
             ) {
                 Icon(
                     imageVector = item.icon,

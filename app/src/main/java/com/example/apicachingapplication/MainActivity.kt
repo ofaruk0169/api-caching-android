@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -53,7 +54,13 @@ import com.example.apicachingapplication.feature_reading.presentation.quran_read
 import com.example.apicachingapplication.feature_reading.presentation.quran_surah_list.SurahListScreen
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Remove
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.navigation.NavController
@@ -62,6 +69,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.apicachingapplication.feature_reading.presentation.TextSizeViewModel
+import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.ModalDrawerSheet
+import androidx.compose.material3.NavigationDrawerItem
+import androidx.compose.runtime.rememberCoroutineScope
+import com.example.apicachingapplication.feature_reading.domain.model.MenuItem
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -82,6 +95,9 @@ class MainActivity : ComponentActivity() {
                 val textSizeViewModel: TextSizeViewModel = hiltViewModel()
                 val textSizeState by textSizeViewModel.textsize
 
+                val drawerState = rememberDrawerState(DrawerValue.Closed)
+                val scope = rememberCoroutineScope()
+
                 Box{
                     Image(
                         painter = painterResource(R.drawable.app_background),
@@ -89,200 +105,254 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         contentScale = ContentScale.Crop
                     )
-                    Scaffold(
-                        modifier = Modifier
-                            .fillMaxSize(),
-                        containerColor = Color.Transparent,
-                        topBar = {
-                            CenterAlignedTopAppBar(
-                                modifier = Modifier.padding(bottom = 20.dp),
-                                navigationIcon = {
-                                    IconButton(onClick = { }) {
-                                        Icon(
-                                            imageVector = Icons.Default.Menu,
-                                            contentDescription = "Menu",
-                                            tint = Color(0xFFc9d1c7),
-                                            modifier = Modifier.size(30.dp)
-                                        )
+
+                    ModalNavigationDrawer (
+                        drawerState = drawerState,
+                        drawerContent = {
+                            ModalDrawerSheet {
+                                DrawerHeader()
+                                DrawerBody(
+                                    listOf(
+                                        MenuItem(
+                                            "home",
+                                            "Home",
+                                            Icons.Default.Home
+                                        ),
+                                        MenuItem(
+                                            "settings",
+                                            "Settings",
+                                            Icons.Default.Settings
+                                        ),
+                                        MenuItem(
+                                            "info",
+                                            "Info",
+                                            Icons.Default.Info
+                                        ),
+                                        MenuItem(
+                                            "favourites",
+                                            "Favourties",
+                                            Icons.Default.Favorite
+                                        ),
+                                    ),
+                                    onMenuItemClicked = { menuItem ->
+                                        Log.d("NavDrawerComposeTutorial", menuItem.title)
+                                        scope.launch {
+                                            drawerState.close()
+                                        }
+
+
                                     }
-                                },
-                                title = {
-                                    Column(
-                                        horizontalAlignment = Alignment.CenterHorizontally,
-                                    ) {
-                                        Text(
-                                            text = "The Noble Quran",
-                                            color = Color(0xFFc9d1c7),
-                                            fontWeight = FontWeight.Bold,
-                                            style = MaterialTheme.typography.headlineLarge
-                                        )
-                                        Spacer(modifier = Modifier.height(5.dp))
-                                        Text(
-                                            text = "KS Studio",
-                                            color = Color(0xFFc9d1c7),
-                                            fontWeight = FontWeight.Bold,
-                                            style = MaterialTheme.typography.titleMedium
-                                        )
-                                        Spacer(modifier = Modifier.height(20.dp))
-                                    }
-                                },
-                                colors = TopAppBarDefaults.mediumTopAppBarColors(
-                                    containerColor = Color.Transparent
                                 )
-                            )
+                            }
                         },
 
-                        bottomBar = {
+                        content = {
 
-                            val backStackEntryState = navController.currentBackStackEntryAsState()
-                            val currentRoute = backStackEntryState.value?.destination?.route
-
-                            BottomAppBar(
-                                containerColor = Color.Transparent,
-                                contentColor = Color(0xFFF5EBDD),
+                            Scaffold(
                                 modifier = Modifier
-                                    .border(
-                                        BorderStroke(
-                                            width = 1.dp,
-                                            color = Color(0xFFF5EBDD),
-                                        ),
-                                        shape = RoundedCornerShape(12.dp)
+                                    .fillMaxSize(),
+                                containerColor = Color.Transparent,
+                                topBar = {
+                                    CenterAlignedTopAppBar(
+                                        modifier = Modifier.padding(bottom = 20.dp),
+                                        navigationIcon = {
+                                            IconButton(
+                                                onClick = { },
+
+                                                ) {
+                                                Icon(
+                                                    imageVector = Icons.Default.Menu,
+                                                    contentDescription = "Open Navigation Drawer",
+                                                    tint = Color(0xFFc9d1c7),
+                                                    modifier = Modifier
+                                                        .size(30.dp)
+                                                        .clickable {
+                                                            scope.launch {
+                                                                drawerState.open()
+                                                            }
+                                                        }
+                                                )
+                                            }
+                                        },
+                                        title = {
+                                            Column(
+                                                horizontalAlignment = Alignment.CenterHorizontally,
+                                            ) {
+                                                Text(
+                                                    text = "The Noble Quran",
+                                                    color = Color(0xFFc9d1c7),
+                                                    fontWeight = FontWeight.Bold,
+                                                    style = MaterialTheme.typography.headlineLarge
+                                                )
+                                                Spacer(modifier = Modifier.height(5.dp))
+                                                Text(
+                                                    text = "KS Studio",
+                                                    color = Color(0xFFc9d1c7),
+                                                    fontWeight = FontWeight.Bold,
+                                                    style = MaterialTheme.typography.titleMedium
+                                                )
+                                                Spacer(modifier = Modifier.height(20.dp))
+                                            }
+                                        },
+                                        colors = TopAppBarDefaults.mediumTopAppBarColors(
+                                            containerColor = Color.Transparent
+                                        )
                                     )
-                            ) {
+                                },
 
-                                Box(
-                                    modifier = Modifier.fillMaxWidth(),
-                                    contentAlignment = Alignment.Center
+                                bottomBar = {
+
+                                    val backStackEntryState = navController.currentBackStackEntryAsState()
+                                    val currentRoute = backStackEntryState.value?.destination?.route
+
+                                    BottomAppBar(
+                                        containerColor = Color.Transparent,
+                                        contentColor = Color(0xFFF5EBDD),
+                                        modifier = Modifier
+                                            .border(
+                                                BorderStroke(
+                                                    width = 1.dp,
+                                                    color = Color(0xFFF5EBDD),
+                                                ),
+                                                shape = RoundedCornerShape(12.dp)
+                                            )
+                                    ) {
+
+                                        Box(
+                                            modifier = Modifier.fillMaxWidth(),
+                                            contentAlignment = Alignment.Center
+                                        ) {
+
+                                            //getting current screen from the backstack in order to dynamically change bottom bar download button
+
+                                            when (currentRoute) {
+                                                Screen.SurahListScreen.route -> {
+
+                                                    Row(
+                                                        modifier = Modifier.fillMaxWidth(),
+                                                        horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
+                                                        verticalAlignment = Alignment.CenterVertically,
+                                                    ) {
+                                                        FilledIconButton(
+                                                            onClick = { cacheAllAction() },
+                                                            modifier = Modifier
+                                                                .size(48.dp),
+                                                        ) {
+                                                            Icon(
+                                                                imageVector = if (isAllSurahsCached) Icons.Default.CheckCircle else Icons.Default.Download,
+                                                                contentDescription = "Cache all surahs"
+                                                            )
+                                                        }
+
+                                                        //size buttons below
+
+                                                        FilledIconButton(
+                                                            onClick = { textSizeViewModel.decreaseTextSize() },
+                                                            modifier = Modifier
+                                                                .size(48.dp),
+                                                        ) {
+                                                            Icon(
+                                                                imageVector = Icons.Default.Remove,
+                                                                contentDescription = "Decrease Text Size"
+                                                            )
+                                                        }
+
+                                                        FilledIconButton(
+                                                            onClick = { textSizeViewModel.increaseTextSize() },
+                                                            modifier = Modifier
+                                                                .size(48.dp),
+                                                        ) {
+                                                            Icon(
+                                                                imageVector = Icons.Default.Add ,
+                                                                contentDescription = "Increase Text Size"
+                                                            )
+                                                        }
+
+                                                    }
+
+                                                }
+
+                                                // Buttons for Detail screen
+
+                                                Screen.SurahDetailScreen.route + "/{surahId}" -> {
+
+                                                    Row(
+                                                        modifier = Modifier.fillMaxWidth(),
+                                                        horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
+                                                        verticalAlignment = Alignment.CenterVertically,
+                                                    ) {
+
+                                                        FilledIconButton(
+                                                            onClick = { cacheAction() },
+                                                            modifier = Modifier
+                                                                .size(48.dp),
+                                                        ) {
+                                                            Icon(
+                                                                imageVector = if (isCurrentSurahCached) Icons.Default.CheckCircle else Icons.Default.Download,
+                                                                contentDescription = "Cache Current Surahs"
+                                                            )
+                                                        }
+
+                                                        FilledIconButton(
+                                                            onClick = { textSizeViewModel.decreaseTextSize() },
+                                                            modifier = Modifier
+                                                                .size(48.dp),
+                                                        ) {
+                                                            Icon(
+                                                                imageVector = Icons.Default.Remove,
+                                                                contentDescription = "Decrease Text Size"
+                                                            )
+                                                        }
+
+                                                        FilledIconButton(
+                                                            onClick = { textSizeViewModel.increaseTextSize() },
+                                                            modifier = Modifier
+                                                                .size(48.dp),
+                                                        ) {
+                                                            Icon(
+                                                                imageVector = Icons.Default.Add ,
+                                                                contentDescription = "Increase Text Size"
+                                                            )
+                                                        }
+
+                                                    }
+
+                                                }
+                                                else -> {}
+                                            }
+                                        }
+                                    }
+                                }
+
+                            ) { paddingValues ->
+                                NavHost(
+                                    modifier = Modifier.padding(paddingValues),
+                                    navController = navController,
+                                    startDestination = Screen.SurahListScreen.route
                                 ) {
-
-                                    //getting current screen from the backstack in order to dynamically change bottom bar download button
-
-                                    when (currentRoute) {
-                                        Screen.SurahListScreen.route -> {
-
-                                            Row(
-                                                modifier = Modifier.fillMaxWidth(),
-                                                horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
-                                                verticalAlignment = Alignment.CenterVertically,
-                                            ) {
-                                                FilledIconButton(
-                                                    onClick = { cacheAllAction() },
-                                                    modifier = Modifier
-                                                        .size(48.dp),
-                                                ) {
-                                                    Icon(
-                                                        imageVector = if (isAllSurahsCached) Icons.Default.CheckCircle else Icons.Default.Download,
-                                                        contentDescription = "Cache all surahs"
-                                                    )
-                                                }
-
-                                                //size buttons below
-
-                                                FilledIconButton(
-                                                    onClick = { textSizeViewModel.decreaseTextSize() },
-                                                    modifier = Modifier
-                                                        .size(48.dp),
-                                                ) {
-                                                    Icon(
-                                                        imageVector = Icons.Default.Remove,
-                                                        contentDescription = "Decrease Text Size"
-                                                    )
-                                                }
-
-                                                FilledIconButton(
-                                                    onClick = { textSizeViewModel.increaseTextSize() },
-                                                    modifier = Modifier
-                                                        .size(48.dp),
-                                                ) {
-                                                    Icon(
-                                                        imageVector = Icons.Default.Add ,
-                                                        contentDescription = "Increase Text Size"
-                                                    )
-                                                }
-
-                                            }
-
-                                        }
-
-                                        // Buttons for Detail screen
-
-                                        Screen.SurahDetailScreen.route + "/{surahId}" -> {
-
-                                            Row(
-                                                modifier = Modifier.fillMaxWidth(),
-                                                horizontalArrangement = Arrangement.spacedBy(12.dp, Alignment.CenterHorizontally),
-                                                verticalAlignment = Alignment.CenterVertically,
-                                            ) {
-
-                                                FilledIconButton(
-                                                    onClick = { cacheAction() },
-                                                    modifier = Modifier
-                                                        .size(48.dp),
-                                                ) {
-                                                    Icon(
-                                                        imageVector = if (isCurrentSurahCached) Icons.Default.CheckCircle else Icons.Default.Download,
-                                                        contentDescription = "Cache Current Surahs"
-                                                    )
-                                                }
-
-                                                FilledIconButton(
-                                                    onClick = { textSizeViewModel.decreaseTextSize() },
-                                                    modifier = Modifier
-                                                        .size(48.dp),
-                                                ) {
-                                                    Icon(
-                                                        imageVector = Icons.Default.Remove,
-                                                        contentDescription = "Decrease Text Size"
-                                                    )
-                                                }
-
-                                                FilledIconButton(
-                                                    onClick = { textSizeViewModel.increaseTextSize() },
-                                                    modifier = Modifier
-                                                        .size(48.dp),
-                                                ) {
-                                                    Icon(
-                                                        imageVector = Icons.Default.Add ,
-                                                        contentDescription = "Increase Text Size"
-                                                    )
-                                                }
-
-                                            }
-
-                                        }
-                                        else -> {}
+                                    composable(
+                                        route = Screen.SurahListScreen.route
+                                    ) {
+                                        SurahListScreen(
+                                            navController,
+                                            textSize = textSizeState.textSize,
+                                            registerAction = { action -> cacheAllAction = action },
+                                            onCacheStatusChanged = { cached -> isAllSurahsCached = cached }
+                                        )
+                                    }
+                                    composable(
+                                        route = Screen.SurahDetailScreen.route + "/{surahId}"
+                                    ) {
+                                        SurahDetailScreen(
+                                            registerAction = { action -> cacheAction = action },
+                                            textSize = textSizeState.textSize,
+                                            onCacheStatusChanged = { cached -> isCurrentSurahCached = cached }
+                                        )
                                     }
                                 }
                             }
                         }
-
-                    ) { paddingValues ->
-                        NavHost(
-                            modifier = Modifier.padding(paddingValues),
-                            navController = navController,
-                            startDestination = Screen.SurahListScreen.route
-                        ) {
-                            composable(
-                                route = Screen.SurahListScreen.route
-                            ) {
-                                SurahListScreen(
-                                    navController,
-                                    textSize = textSizeState.textSize,
-                                    registerAction = { action -> cacheAllAction = action },
-                                    onCacheStatusChanged = { cached -> isAllSurahsCached = cached }
-                                )
-                            }
-                            composable(
-                                route = Screen.SurahDetailScreen.route + "/{surahId}"
-                            ) {
-                                SurahDetailScreen(
-                                    registerAction = { action -> cacheAction = action },
-                                    textSize = textSizeState.textSize,
-                                    onCacheStatusChanged = { cached -> isCurrentSurahCached = cached }
-                                )
-                            }
-                        }
-                    }
+                    )
                 }
             }
         }
