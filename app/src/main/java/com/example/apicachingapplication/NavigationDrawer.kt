@@ -29,12 +29,12 @@ fun DrawerHeader(modifier: Modifier = Modifier) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .background(Color.Yellow)
+            .background(Color(0xFFD4AF37))
             .padding(vertical = 64.dp),
         contentAlignment = Alignment.Center
     ) {
         Text(
-            "Paypal",
+            "Please Support the Team",
             style = TextStyle(fontSize = 30.sp)
         )
     }

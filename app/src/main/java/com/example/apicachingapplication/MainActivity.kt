@@ -79,6 +79,7 @@ import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.runtime.rememberCoroutineScope
 import com.example.apicachingapplication.feature_reading.domain.model.MenuItem
 import kotlinx.coroutines.launch
+import androidx.compose.material3.IconButtonDefaults
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -134,7 +135,7 @@ class MainActivity : ComponentActivity() {
                                         ),
                                         MenuItem(
                                             "paypal",
-                                            "Paypal",
+                                            "PayPal Donations",
                                             Icons.Default.Payments
                                         ),
                                     ),
@@ -241,6 +242,10 @@ class MainActivity : ComponentActivity() {
                                                             onClick = { cacheAllAction() },
                                                             modifier = Modifier
                                                                 .size(48.dp),
+                                                            colors = IconButtonDefaults.filledIconButtonColors(
+                                                                containerColor = Color(0xFFD4AF37),
+                                                                contentColor = Color(0xFF5C4033)
+                                                            )
                                                         ) {
                                                             Icon(
                                                                 imageVector = if (isAllSurahsCached) Icons.Default.CheckCircle else Icons.Default.Download,
@@ -254,6 +259,10 @@ class MainActivity : ComponentActivity() {
                                                             onClick = { textSizeViewModel.decreaseTextSize() },
                                                             modifier = Modifier
                                                                 .size(48.dp),
+                                                            colors = IconButtonDefaults.filledIconButtonColors(
+                                                                containerColor = Color(0xFFD4AF37),
+                                                                contentColor = Color(0xFF5C4033)
+                                                            )
                                                         ) {
                                                             Icon(
                                                                 imageVector = Icons.Default.Remove,
@@ -265,6 +274,10 @@ class MainActivity : ComponentActivity() {
                                                             onClick = { textSizeViewModel.increaseTextSize() },
                                                             modifier = Modifier
                                                                 .size(48.dp),
+                                                            colors = IconButtonDefaults.filledIconButtonColors(
+                                                                containerColor = Color(0xFFD4AF37),
+                                                                contentColor = Color(0xFF5C4033)
+                                                            )
                                                         ) {
                                                             Icon(
                                                                 imageVector = Icons.Default.Add ,
@@ -287,9 +300,29 @@ class MainActivity : ComponentActivity() {
                                                     ) {
 
                                                         FilledIconButton(
+                                                            onClick = { },
+                                                            modifier = Modifier
+                                                                .size(48.dp),
+
+                                                            colors = IconButtonDefaults.filledIconButtonColors(
+                                                                containerColor = Color(0xFFD4AF37),
+                                                                contentColor = Color(0xFF5C4033)
+                                                            )
+                                                        ) {
+                                                            Icon(
+                                                                imageVector = Icons.Default.Home ,
+                                                                contentDescription = "Go back to home screen"
+                                                            )
+                                                        }
+
+                                                        FilledIconButton(
                                                             onClick = { cacheAction() },
                                                             modifier = Modifier
                                                                 .size(48.dp),
+                                                            colors = IconButtonDefaults.filledIconButtonColors(
+                                                                containerColor = Color(0xFFD4AF37),
+                                                                contentColor = Color(0xFF5C4033)
+                                                            )
                                                         ) {
                                                             Icon(
                                                                 imageVector = if (isCurrentSurahCached) Icons.Default.CheckCircle else Icons.Default.Download,
@@ -301,6 +334,11 @@ class MainActivity : ComponentActivity() {
                                                             onClick = { textSizeViewModel.decreaseTextSize() },
                                                             modifier = Modifier
                                                                 .size(48.dp),
+
+                                                            colors = IconButtonDefaults.filledIconButtonColors(
+                                                                containerColor = Color(0xFFD4AF37),
+                                                                contentColor = Color(0xFF5C4033)
+                                                            )
                                                         ) {
                                                             Icon(
                                                                 imageVector = Icons.Default.Remove,
@@ -312,6 +350,11 @@ class MainActivity : ComponentActivity() {
                                                             onClick = { textSizeViewModel.increaseTextSize() },
                                                             modifier = Modifier
                                                                 .size(48.dp),
+
+                                                            colors = IconButtonDefaults.filledIconButtonColors(
+                                                                containerColor = Color(0xFFD4AF37),
+                                                                contentColor = Color(0xFF5C4033)
+                                                            )
                                                         ) {
                                                             Icon(
                                                                 imageVector = Icons.Default.Add ,
