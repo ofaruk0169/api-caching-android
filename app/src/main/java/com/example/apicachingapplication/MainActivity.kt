@@ -22,9 +22,11 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Brush
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Cloud
 import androidx.compose.material.icons.filled.CloudQueue
+import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -57,6 +59,7 @@ import androidx.compose.material.icons.filled.Download
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.LightbulbCircle
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.DrawerValue
@@ -114,24 +117,19 @@ class MainActivity : ComponentActivity() {
                                 DrawerBody(
                                     listOf(
                                         MenuItem(
-                                            "home",
-                                            "Home",
-                                            Icons.Default.Home
+                                            "creator",
+                                            "Creator - KillShot",
+                                            Icons.Default.LightbulbCircle
                                         ),
                                         MenuItem(
-                                            "settings",
-                                            "Settings",
-                                            Icons.Default.Settings
+                                            "designer",
+                                            "Designer - Soul Dragger",
+                                            Icons.Default.Brush
                                         ),
                                         MenuItem(
-                                            "info",
-                                            "Info",
-                                            Icons.Default.Info
-                                        ),
-                                        MenuItem(
-                                            "favourites",
-                                            "Favourties",
-                                            Icons.Default.Favorite
+                                            "developer",
+                                            "Developer - Omare Faruk",
+                                            Icons.Default.Code
                                         ),
                                     ),
                                     onMenuItemClicked = { menuItem ->

@@ -52,9 +52,11 @@ fun DrawerBody(
         items(items) { item ->
             Row(
                 modifier = Modifier.padding(16.dp)
+                    .fillMaxWidth()
                     .clickable {
                         onMenuItemClicked(item)
                     }
+                    .padding(16.dp)
             ) {
                 Icon(
                     imageVector = item.icon,
