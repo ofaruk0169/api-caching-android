@@ -60,6 +60,7 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.LightbulbCircle
+import androidx.compose.material.icons.filled.Payments
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.DrawerValue
@@ -130,6 +131,11 @@ class MainActivity : ComponentActivity() {
                                             "developer",
                                             "Developer - Omare Faruk",
                                             Icons.Default.Code
+                                        ),
+                                        MenuItem(
+                                            "paypal",
+                                            "Paypal",
+                                            Icons.Default.Payments
                                         ),
                                     ),
                                     onMenuItemClicked = { menuItem ->
