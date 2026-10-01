@@ -114,7 +114,9 @@ class MainActivity : ComponentActivity() {
                     ModalNavigationDrawer (
                         drawerState = drawerState,
                         drawerContent = {
-                            ModalDrawerSheet {
+                            ModalDrawerSheet(
+                                drawerContainerColor = Color(0xFFF5EBDD)
+                            ) {
                                 DrawerHeader()
                                 DrawerBody(
                                     listOf(
