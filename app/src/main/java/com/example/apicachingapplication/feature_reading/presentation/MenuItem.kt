@@ -1,4 +1,4 @@
-package com.example.apicachingapplication.feature_reading.domain.model
+package com.example.apicachingapplication.feature_reading.presentation
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

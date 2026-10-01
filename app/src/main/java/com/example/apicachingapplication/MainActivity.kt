@@ -24,8 +24,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Brush
 import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.Cloud
-import androidx.compose.material.icons.filled.CloudQueue
 import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.BottomAppBar
@@ -56,18 +54,14 @@ import com.example.apicachingapplication.feature_reading.presentation.quran_read
 import com.example.apicachingapplication.feature_reading.presentation.quran_surah_list.SurahListScreen
 import dagger.hilt.android.AndroidEntryPoint
 import androidx.compose.material.icons.filled.Download
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.LightbulbCircle
 import androidx.compose.material.icons.filled.Payments
 import androidx.compose.material.icons.filled.Remove
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
@@ -75,11 +69,13 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.apicachingapplication.feature_reading.presentation.TextSizeViewModel
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.ModalDrawerSheet
-import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.runtime.rememberCoroutineScope
-import com.example.apicachingapplication.feature_reading.domain.model.MenuItem
+import com.example.apicachingapplication.feature_reading.presentation.MenuItem
 import kotlinx.coroutines.launch
 import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.ui.platform.LocalUriHandler
+import com.example.apicachingapplication.feature_reading.presentation.DrawerBody
+import com.example.apicachingapplication.feature_reading.presentation.DrawerHeader
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -99,7 +95,7 @@ class MainActivity : ComponentActivity() {
 
                 val textSizeViewModel: TextSizeViewModel = hiltViewModel()
                 val textSizeState by textSizeViewModel.textsize
-
+                val uriHandler = LocalUriHandler.current
                 val drawerState = rememberDrawerState(DrawerValue.Closed)
                 val scope = rememberCoroutineScope()
 
@@ -146,15 +142,16 @@ class MainActivity : ComponentActivity() {
                                         scope.launch {
                                             drawerState.close()
                                         }
-
-
+                                        when(menuItem.id) {
+                                            "paypal" -> uriHandler.openUri("https://omarefar.uk/")
+                                            //else ->
+                                        }
                                     }
                                 )
                             }
                         },
 
                         content = {
-
                             Scaffold(
                                 modifier = Modifier
                                     .fillMaxSize(),
