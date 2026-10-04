@@ -76,6 +76,7 @@ import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.ui.platform.LocalUriHandler
 import com.example.apicachingapplication.feature_reading.presentation.DrawerBody
 import com.example.apicachingapplication.feature_reading.presentation.DrawerHeader
+import com.example.apicachingapplication.feature_reading.presentation.quran_contributors.ContributorScreen
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -92,7 +93,6 @@ class MainActivity : ComponentActivity() {
                 var isCurrentSurahCached by remember { mutableStateOf(false) }
                 var cacheAllAction by remember { mutableStateOf<() -> Unit>({}) }
                 var isAllSurahsCached by remember { mutableStateOf(false) }
-
                 val textSizeViewModel: TextSizeViewModel = hiltViewModel()
                 val textSizeState by textSizeViewModel.textsize
                 val uriHandler = LocalUriHandler.current
@@ -143,7 +143,7 @@ class MainActivity : ComponentActivity() {
                                             drawerState.close()
                                         }
                                         when(menuItem.id) {
-                                            "paypal" -> uriHandler.openUri("https://omarefar.uk/")
+                                            "paypal" -> uriHandler.openUri("https://paypal.me/Mixandscope")
                                             //else ->
                                         }
                                     }
@@ -205,10 +205,8 @@ class MainActivity : ComponentActivity() {
                                 },
 
                                 bottomBar = {
-
                                     val backStackEntryState = navController.currentBackStackEntryAsState()
                                     val currentRoute = backStackEntryState.value?.destination?.route
-
                                     BottomAppBar(
                                         containerColor = Color.Transparent,
                                         contentColor = Color(0xFFF5EBDD),
@@ -393,6 +391,13 @@ class MainActivity : ComponentActivity() {
                                             registerAction = { action -> cacheAction = action },
                                             textSize = textSizeState.textSize,
                                             onCacheStatusChanged = { cached -> isCurrentSurahCached = cached }
+                                        )
+                                    }
+                                    composable(
+                                        route = Screen.ContributorScreen.route
+                                    ) {
+                                        ContributorScreen(
+
                                         )
                                     }
                                 }
