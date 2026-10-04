@@ -1,0 +1,4 @@
+package com.example.apicachingapplication.feature_reading.presentation.quran_contributors
+
+class ContributorViewModel {
+}
