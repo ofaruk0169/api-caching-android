@@ -1,4 +1,4 @@
-package com.example.apicachingapplication.feature_reading.domain.use_case
+package com.example.apicachingapplication.feature_reading.domain.use_case.surah_use_cases
 
 import com.example.apicachingapplication.core.Resource
 import com.example.apicachingapplication.feature_reading.domain.model.Surah
@@ -16,11 +16,11 @@ class GetSurahsUseCase @Inject constructor(
     operator fun invoke(): Flow<Resource<List<Surah>>> = flow {
         try {
             emit(Resource.Loading<List<Surah>>())
-                val surahs = repository.getSurahs()
-                val cachedSurahsNumbers = repository.getCachedSurahs().first()
-                val surahCacheStatus = surahs.map { surah ->
-                    surah.copy(isCached = surah.surahNumber in cachedSurahsNumbers)
-                }
+            val surahs = repository.getSurahs()
+            val cachedSurahsNumbers = repository.getCachedSurahs().first()
+            val surahCacheStatus = surahs.map { surah ->
+                surah.copy(isCached = surah.surahNumber in cachedSurahsNumbers)
+            }
 
             emit(Resource.Success<List<Surah>>(surahCacheStatus))
 
@@ -31,5 +31,3 @@ class GetSurahsUseCase @Inject constructor(
         }
     }
 }
-
-

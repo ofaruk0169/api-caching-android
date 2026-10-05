@@ -1,12 +1,9 @@
-package com.example.apicachingapplication.feature_reading.domain.use_case
+package com.example.apicachingapplication.feature_reading.domain.use_case.surah_use_cases
 
 import com.example.apicachingapplication.core.Resource
 import com.example.apicachingapplication.feature_reading.data.remote.dto.toAyahEntities
-import com.example.apicachingapplication.feature_reading.data.remote.dto.toSurahDetail
 import com.example.apicachingapplication.feature_reading.data.remote.dto.toSurahEntity
 import com.example.apicachingapplication.feature_reading.domain.model.AyahEntity
-import com.example.apicachingapplication.feature_reading.domain.model.SurahDetail
-import com.example.apicachingapplication.feature_reading.domain.repository.AyahRepository
 import com.example.apicachingapplication.feature_reading.domain.repository.SurahRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -27,7 +24,11 @@ class CacheSurahUseCase @Inject constructor(
 
             emit(Resource.Success<List<AyahEntity>>(ayahs))
         } catch (e: HttpException) {
-            emit(Resource.Error<List<AyahEntity>>(e.localizedMessage ?: "An unexpected  error occured"))
+            emit(
+                Resource.Error<List<AyahEntity>>(
+                    e.localizedMessage ?: "An unexpected  error occured"
+                )
+            )
         } catch (e: IOException) {
             emit(Resource.Error<List<AyahEntity>>("Couldn't reach server. Please check connection."))
         }

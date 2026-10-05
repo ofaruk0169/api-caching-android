@@ -1,4 +1,4 @@
-package com.example.apicachingapplication.feature_reading.domain.use_case
+package com.example.apicachingapplication.feature_reading.domain.use_case.surah_use_cases
 
 import android.util.Log
 import com.example.apicachingapplication.core.Resource
@@ -26,9 +26,3 @@ class CacheSurahsUseCase @Inject constructor(
         }
     }
 }
-
-
-
-
-
-

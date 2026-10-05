@@ -5,3 +5,5 @@ data class Contributor(
     val bio: String,
     val photo: Int,
 )
+// switch to state + mutableStateOf if contributors become editable
+
