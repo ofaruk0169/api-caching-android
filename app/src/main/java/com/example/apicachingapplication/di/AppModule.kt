@@ -9,8 +9,10 @@ import androidx.datastore.preferences.preferencesDataStore
 import com.example.apicachingapplication.core.Constants
 import com.example.apicachingapplication.feature_reading.data.data_source.QuranDatabase
 import com.example.apicachingapplication.feature_reading.data.remote.QuranPagesApi
+import com.example.apicachingapplication.feature_reading.data.repository.ContributorRepositoryImpl
 import com.example.apicachingapplication.feature_reading.data.repository.SurahRepositoryImpl
 import com.example.apicachingapplication.feature_reading.data.repository.TextSizeRepositoryImpl
+import com.example.apicachingapplication.feature_reading.domain.repository.ContributorRepository
 import com.example.apicachingapplication.feature_reading.domain.repository.SurahRepository
 import com.example.apicachingapplication.feature_reading.domain.repository.TextSizeRepository
 import com.example.apicachingapplication.feature_reading.domain.use_case.text_use_case.DecreaseTextSizeUseCase
@@ -88,5 +90,13 @@ object AppModule {
             decreaseTextSize = DecreaseTextSizeUseCase(repository),
             getTextSize = GetTextSizeUseCase(repository)
         )
+    }
+
+    //Contributor code - will change to "User code" when version 2 rolls
+
+    @Provides
+    @Singleton
+    fun provideContributorRepository(): ContributorRepository {
+        return ContributorRepositoryImpl()
     }
 }
